@@ -45,6 +45,16 @@
 </script>
 
 
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?wjainng";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
 
 
   <title> 深入理解计算机系统(笔记六) // WJAINNG </title>
@@ -96,6 +106,22 @@
           <a href="/">
             <i class="menu-item-icon icon-home"></i> <br />
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
           </a>
         </li>
       
@@ -174,6 +200,13 @@
         
 
         
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2014/11/20/2014-11-20-深入理解计算机系统-笔记六/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/20/2014-11-20-深入理解计算机系统-笔记六/"></span>
+            </a>
+          </span>
           
         
       </div>
@@ -396,7 +429,7 @@
 <li>行匹配<br>上面的步骤选择了某个组i,下面确定字w的一个拷贝是否存储在组i包含的一个高速缓存行中.对直接映射高速缓存很容易,因为每一个组只有一个行,仅当设置了有效位,并且高速缓存行中的标记与w的地址中的标记想匹配时,这一行包含w的一个拷贝.</li>
 <li>字选择<br>一旦命中,就知道w在这个块中的某个地方.如下图所示,块偏移位提供了所需要的字的第一个字节的偏移.可以把快也看成一个字节数组,字节偏移是这个数组的一个下标.</li>
 </ol>
-<p><img src="!--￼3--&gt;/images/高速缓存1.jpg" alt="alter 缓存选取"></p>
+<p><img src="/images/高速缓存1.jpg" alt="alter 缓存选取"></p>
 <ol>
 <li>缓存不命中时的行替换<br>如果缓存不命中,需要从下一层取出被请求的块,然后将新的块存储在组索引位指示的一个高速缓存行中.当组中都是有效高速缓存,会存在一个替换策略,驱逐一个现在的行.</li>
 <li>小结<br>以(S,E,B,m) = (4,1,2,4)为例<br>1.标记位和索引位决定了块号.<br>2.一共有8块,但是只有4个高速缓存组,多个块映射到同一个高速缓存组(具有相同的组索引).<br>3.映射到同一个高速缓存组的块由标记位唯一地标识.</li>
@@ -891,19 +924,19 @@
 <h3 id="组相联高速缓存">组相联高速缓存</h3><p>&emsp;&emsp;直接映射高速缓存冲突不命中的问题是每一个组只有一行(E=1).组相联高速缓存(set associative cache)每个组都保存多余一个的高速缓存行.</p>
 <ol>
 <li>组选择<br>与直接映射高速缓存的组选择一样,通过组索引位标识.</li>
-<li>行匹配和字选择<br>比直接映射高速缓存的组选择复杂,因为必须检查多个行的标记位和有效位,以确定所请求的字是否在集合中.一个相联的存储器是一个(key, value)对的数组,以key为输入,返回与输入的key相匹配的(key, value)对中的value值.key是标记和有效位,value为块的内容.<br><img src="!--￼4--&gt;/images/高速缓存2.jpg" alt="alter 缓存选取"></li>
+<li>行匹配和字选择<br>比直接映射高速缓存的组选择复杂,因为必须检查多个行的标记位和有效位,以确定所请求的字是否在集合中.一个相联的存储器是一个(key, value)对的数组,以key为输入,返回与输入的key相匹配的(key, value)对中的value值.key是标记和有效位,value为块的内容.<br><img src="/images/高速缓存2.jpg" alt="alter 缓存选取"></li>
 <li>不命中时的行替换<br>当不命中时,需要从存储器中取出包含这个字的块,如果有空行就直接放入,如果没有空行则需要选择一个替换算法.</li>
 </ol>
 <h3 id="全相联高速缓存">全相联高速缓存</h3><p>一个全相联高速缓存(fully associative cache)是由一个包含所有高速缓存行的组($$E=C \div B$$)组成.</p>
 <ol>
-<li>组选择<br>因为最有一个组,地址中不需要有索引位.地址被划分成一个标记和一个块偏移.<br><img src="!--￼5--&gt;/images/高速缓存3.jpg" alt="alter 缓存选择"></li>
+<li>组选择<br>因为最有一个组,地址中不需要有索引位.地址被划分成一个标记和一个块偏移.<br><img src="/images/高速缓存3.jpg" alt="alter 缓存选择"></li>
 <li>行匹配和子选择<br>与组相联高速缓存一样,只是规模比组相联大.因为高速缓存电路必须并行地搜索许多相匹配的标记,构造一个又大又快的相联高速缓存很难,并且很贵.因此只适合做小的高速缓存,例如虚拟存储器系统中的翻译备用缓冲器(TLB).</li>
 </ol>
 <h3 id="写的问题">写的问题</h3><p>写的情况比读复杂些,假如写一个已经缓存了的字w写命中(write hit).在高速缓存更新了它的w的拷贝后,怎么更新w在层次结构中紧接着低一层的拷贝呢?最简单的方法称为直写(write-through),就是立即将w写回在层次结构中紧接着的低一层中. 虽然简单但是每次都会引起总线流量.另一种方法称为写回(write-back),尽可能第推迟存储器更新.只有当替换算法需要驱逐更新过的块时才把它写到紧接着的低一层中.由于局部性,写回能显著减少总线流量,但是增加了复杂性,高速缓存必须为每个高速缓存维护一个额外的修改位(dirty bit),表示这个高速缓存块是否被修改过.</p>
 <p>另一个问题是如何处理写不命中,一种方法为写分配(write-allocate),加载相应的低一层中的块到高速缓存,然后更新这个高速缓存块.试图利用写的空间局部性,但是缺点是每次不命中都会导致一个块从低一层传送到高速缓存.另外一种为非写分配(not-write-allocate),避开高速缓存,直接把这个字写到第一层.直写高速缓存通常是非写分配的,写回高速缓存通常是写分配的.</p>
 <p>对于试图编写高速缓存比较友好的程序来说,建议采用写回和写分配的高速缓存模型.通常由于较长的传送时间,存储器层次结构中较低层更可能使用写回.</p>
 <h3 id="真实高速缓存层次结构">真实高速缓存层次结构</h3><p>高速缓存既保存数据也保存指令(统一高速缓存unified cache).只保存指令的高速缓存称为i-cache.只保存程序数据的高速缓存称为d-cache.现代处理器包括独立的i-cache和d-cache.两个独立的高速缓存,处理器能够同时读一个指令字和一个数据字.i-cache通常是只读的,因此比较简单.</p>
-<p>Intel Core i7 高速缓存层次结构<br><img src="!--￼6--&gt;/images/高速缓存4.jpg" alt="alter 缓存层次结构"></p>
+<p>Intel Core i7 高速缓存层次结构<br><img src="/images/高速缓存4.jpg" alt="alter 缓存层次结构"></p>
 <table>
 <thead>
 <tr>
@@ -976,7 +1009,7 @@
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumvec</span><span class="params">(<span class="keyword">int</span> v[N])</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i, sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">    sum += v[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面函数高速缓存优化吗?首先局部变量i和sum循环体有良好的时间局部性,实际上优化编译器会把它们缓存在寄存器文件中.假设v是块对齐的,字为4个字节,高速缓存块为4个字.高速缓存为空,则对v的引用有下面的命中和不命中模式:</p>
-<p><img src="!--￼7--&gt;/images/命中1.jpg" alt="alter 命中"></p>
+<p><img src="/images/命中1.jpg" alt="alter 命中"></p>
 <p>这样v[0]不命中,而包含v[0]-v[3]相应的块会被从存储器加载到高速缓存中.因此接下来的三个引用都会命中.</p>
 
       
@@ -995,7 +1028,7 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/29/hello-world/">Hello World</a>
+              <a href="/2015/01/17/2015-01-27-深入理解计算机系统-笔记二/">深入理解计算机系统(笔记二)</a>
             
           </div>
 
@@ -1018,6 +1051,10 @@
 
     
       <div class="comments" id="comments">
+        
+          <div class="ds-thread" data-thread-key="2014/11/20/2014-11-20-深入理解计算机系统-笔记六/"
+               data-title="深入理解计算机系统(笔记六)" data-url="http://www.wjainng.com/2014/11/20/2014-11-20-深入理解计算机系统-笔记六/">
+          </div>
         
       </div>
     
@@ -1063,21 +1100,21 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">0</span>
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1120,7 +1157,9 @@
 
     <div id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">
   
   &copy; &nbsp; 
   2015
@@ -1140,7 +1179,11 @@
     NexT.Mist
   </a>
 </div>
-
+<div class="powered-by">
+</div>
+本站总访问量<span id="wjainng_value_site_pv"></span>次
+本站访客数<span id="wjainng_value_site_uv"></span>人次
+本文总阅读量<span id="wjainng_value_page_pv"></span>次
 
 
       </div>
@@ -1345,32 +1388,24 @@
 
   
   
-  
 
   
-
-    <script type="text/javascript">
-      var disqus_shortname = 'wjainng';
-      var disqus_identifier = '2014/11/20/深入理解计算机系统(笔记六)/';
-      var disqus_title = '深入理解计算机系统(笔记六)';
-      var disqus_url = 'http://www.wjainng.com/2014/11/20/深入理解计算机系统(笔记六)/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
+    
   
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wjainng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
+  
 
 
   

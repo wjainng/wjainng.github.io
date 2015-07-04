@@ -1,0 +1,1212 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+    <meta name="description" content="欢迎来到WJAINNG" />
+
+
+
+  <meta name="keywords" content="OS," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    analytics: {
+      google: ''
+    },
+    sidebar: 'hide'
+  };
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?wjainng";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <title> 深入理解计算机系统(笔记二) // WJAINNG </title>
+</head>
+
+<body>
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">WJAINNG</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<div class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              深入理解计算机系统(笔记二)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-01-17
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/01/17/2015-01-27-深入理解计算机系统-笔记二/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/17/2015-01-27-深入理解计算机系统-笔记二/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <ul id="tree" class="ztree"></ul>
+
+<h1 id="信息的表示和处理">信息的表示和处理</h1><p>现代计算机存储和处理信息以二值信号表示(bit).对于有10个手指的人类来说,使用十进制表示法是很自然的事情,但是当构造存储和处理信息的机器时,二进制的值工作得更好.</p>
+<p>单个的位不是非常有用,但是把位组合起来,再加上某种解释(interpretation),即给不同的可能位模式赋予含义,我们能够表示任何有限集合的元素.</p>
+<p>浮点运算有完全不同的数学属性.虽然溢出会产生特殊的值正无穷大,但是一组正数的乘积总是正的.由于表示的精度有限,浮点运算是不可结合的.例如:(3.14+1e20) - 1e20 求得的值会是0.0,而3.14+(1e20-1e20)的值为3.14.</p>
+<p>整数虽然只能编码一个相对较小的数值范围,但是这种表示是精确的,而浮点数虽然可以编码一个较大的数值范围,但是这种表示只是近似的.</p>
+<h2 id="信息存储">信息存储</h2><p>大多数计算机使用8位的块,或者字节(byte),作为最小的可寻址的存储器单元.</p>
+<h3 id="十六进制表示法">十六进制表示法</h3><p>一个字节由8位组成.二进制表示中其值域为$$00000000<em>2 \sim 11111111_2$$;如果用十进制表示就是$$0</em>{10} \sim 255<em>{10}$$.二进制表示法太冗长,十进制和二进制相互转换很麻烦.以16为基数来表示位模式.用十六进制表示时为$$00</em>{16} \sim FF_{16}$$.</p>
+<p>当值$$x=2^n$$时,很容易把$$x写成16进制.n=i+4<em>j$$,i为0,1,2,3时,分别对应1,2,4,8.后面跟j个十六进制的0.例如$$x=2048=2^{11}<br>.因此n=11=3+2</em>4,从而十六进制表示为0X800$$.</p>
+<h3 id="字">字</h3><p>每台计算机都有一个字长(word size),指明整数和指针数据的标称大小(nominal size).虚拟地址是以这样的一个字来编码的,所以字长决定的最重要的系统参数就是虚拟地址空间的最大大小.对于一个字长为w位的机器而言,虚拟地址的范围为$$0 \sim 2^{w}-1$$,程序最多访问$$2^w$$个字节.</p>
+<p>大多数计算机的字长都是32位,限定了虚拟地址空间为4GB.</p>
+<h3 id="数据大小">数据大小</h3><p>计算机和编译器支持多种不同方式编码的数字格式,例如整数和浮点数,以及其他长度的数字.</p>
+<p>C语言中数字数据类型的字节数</p>
+<table>
+<thead>
+<tr>
+<th>C声明</th>
+<th>32位机器</th>
+<th>64位机器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short int</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long int</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long long int</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>char *</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>程序员应该力图使他们的程序在不同的机器和编译器上是可移植的.(一方面就是对不同数据类型的确切大小不敏感)</p>
+<h3 id="寻址和字节顺序">寻址和字节顺序</h3><p>对于跨越多个字节的程序对象,需要有两个规则:这个对象的地址是什么,以及在存储器中如何排列这些字节.</p>
+<p>在几乎所有的机器上,多个字节对象都被存储为连续的字节序列,<em>对象的地址为所使用字节中最小的地址</em>.</p>
+<p>考虑一个w位的整数,位表示为$$[x<em>{w-1},x</em>{w-2},…,x<em>1,x_0]$$,其中$$x</em>{w-1}$$是最高有效位,而$$x<em>0$$是最低有效位.假设w是8的倍数,这些就能被分组成为字节,其中高有效字节包含位$$[x</em>{w-1}, x<em>{w-2},…,x</em>{w-8}]$$,而最低有效字节包含位$$[x_7,x_6,…,x_0]$$.</p>
+<ul>
+<li>小端法(little endian):最低有效字节在最前面,地址位置为最低有效字节.</li>
+<li>大端法(big endian):最高有效字节在最前面,地址位置为最高有效字节.</li>
+</ul>
+<h3 id="表示字符串">表示字符串</h3><p>在使用ASCII码作为字符码的任何系统上都将得到相同的结果,与字节顺序和字大小规则无关.因而,文本数据比二进制数据具有更强的平台独立性.</p>
+<p><strong>生成一张ASCII表</strong><br><em>通过执行man ascii 就可以得到</em></p>
+<p><strong>文字编码的Unicode标准</strong></p>
+<h3 id="表示代码">表示代码</h3><p>考虑下面的C函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们在示例机器上编译时,生成如下字节表示的机器代码:</p>
+<p><strong>Linux 32:</strong>&emsp; 55 89 e5 8b 45 0c 03 45 08 c9 c3</p>
+<p><strong>Windows:</strong>&emsp;55 89 e5 8b 45 0c 03 45 08 c9 c3</p>
+<p><strong>Sun:</strong>&emsp;&emsp;&emsp;81 c3 e0 08 90 02 00 09</p>
+<p><strong>Linux 64:</strong>&emsp; 55 48 89 e5 89 7d fc 89 75 f8 03 45 fc c9 c3</p>
+<p>不同的机器类型使用不同的且不兼容的指令和编码方式.二进制代码很少能在不同机器和操作系统组合之间移植.</p>
+<h3 id="布尔代数简介">布尔代数简介</h3><p>二进制值是计算机编码,存储和操作信息的核心,围绕数值0和1的研究已经演化出了丰富的数学知识体系.</p>
+<p>可以将布尔运算扩展到<em>位向量</em>,位向量就是有固定长度为w,由0和1组成的串.位向量的运算可以定义成参数的每个对应元素之间的运算,假设a和b分别表示位向量$$[a<em>{w-1},a</em>{w-2},…,a<em>0]$$和$$[b</em>{w-1},b_{w-2},…,b_0]$$.将a&amp;b也定义为一个长度为w的位向量,其中第i个元素等于$$a_i \&amp; b_i $$, $$ 0 \leq i &lt; w $$.可以用类似的方式将运算 |,^,和~扩展到位向量上.</p>
+<blockquote>
+<p>布尔代数和整数算术运算有很多相似之处,乘法对加法的分配率$$a<em>(b+c) = a </em> b + a * c$$,布尔运算中的&amp;对|的分配率$$a \&amp; (b | c) = (a \&amp; b) | (a \&amp; c)$$.</p>
+<p>$$x+(-x) = 0 $$,布尔运算有$$a \land a=0$$</p>
+</blockquote>
+<h3 id="C语言中的位运算">C语言中的位运算</h3><p>确定一个位级表达式的结果最好的方法,就是将十六进制的参数扩展成二进制表示并执行二进制运算,然后再转换回十六进制.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inplace_swap</span><span class="params">(<span class="keyword">int</span> *x, <span class="keyword">int</span> *y)</span> </span>&#123;</span><br><span class="line">    *y = *x ^ *y;</span><br><span class="line">    *x = *x ^ *y;</span><br><span class="line">    *y = *x ^ *y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>位级运算的一个常见用法就是实现掩码运算,从一个字中选出的位的集合.表达式~0将生成一个全1的掩码,不管机器的字大小是多少.如果写成0XFFFFFFFF,对32位机器来说是一样的,但是会导致代码不可移植.</p>
+<h3 id="C语言中的逻辑运算">C语言中的逻辑运算</h3><p>逻辑运算认为所有非零的参数都是TRUE,而参数0表示FALSE.返回1或者0,分别表示结果为TRUE或者FALSE.</p>
+<p>按位运算只有在特殊情况下,就是参数被限定为0或者1时,才和其对应的逻辑运算有相同的行为.<br>逻辑运算和位运算的一个重要区别就是逻辑运算是短路的.</p>
+<h3 id="C语言中的移位运算">C语言中的移位运算</h3><p>对一个位表示为$$[x<em>{n-1},x</em>{n-2},…,x<em>0]$$的操作数,C表达式$$x \ll k$$会生成一个值,表示为$$[x</em>{n-k-1},x_{n-k-2},…,x_0,0,…,0]$$,x向左移动k位,丢弃最高的k位,在右端补k个0.移位量应该是一个$$0 \sim n-1$$之间的值.移位运算是从左至右可结合的.所以$$x \ll j \ll k等价于(x \ll j) \ll k$$.</p>
+<p>与左移相对应的有一个右移,一般机器支持两种形式的右移:逻辑右移和算术右移.</p>
+<ul>
+<li>逻辑右移:在左端补k个0.$$[0,…,0,x<em>{n-1},x</em>{n-2},…,x_k]$$</li>
+<li>算术右移:在左端补k个最高有效位的值.$$[x<em>{n-1},…,x</em>{n-1},x<em>{n-1},x</em>{n-2},…,x_k]$$</li>
+</ul>
+<p>C语言标准没有明确定义应该使用哪种类型的右移,对于无符号数据,右移必须是逻辑的.而对于有符号数,算术或者逻辑的右移都可以.实际上,几乎所有的编译器/机器组合对有符号数据使用算术右移.</p>
+<blockquote>
+<p>注意,移动k位,$$k \geq w$$时,java中有保证是按取模计算后的结果,c中没有保证,最好能保证$$k &lt; w$$</p>
+</blockquote>
+<h2 id="整数表示">整数表示</h2><h3 id="整型数据类型">整型数据类型</h3><p>C语言支持多种整型数据类型.</p>
+<p>32位机器上C语言的整型数据类型取值范围</p>
+<table>
+<thead>
+<tr>
+<th>C数据类型</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>-128($$-2^7$$)</td>
+<td>127($$2^7-1$$)</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>0</td>
+<td>255($$2^8-1$$)</td>
+</tr>
+<tr>
+<td>shourt[int]</td>
+<td>-32768($$-2^{15}$$)</td>
+<td>32767($$2^{15}-1$$)</td>
+</tr>
+<tr>
+<td>unsigned short[int]</td>
+<td>0</td>
+<td>65535($$2^{16}-1$$)</td>
+</tr>
+<tr>
+<td>int</td>
+<td>-2147483648($$-2^{31}$$)</td>
+<td>2147483647($$2^{31}-1$$)</td>
+</tr>
+<tr>
+<td>unsigned[int]</td>
+<td>0</td>
+<td>4294967295($$2^{32}-1$$)</td>
+</tr>
+<tr>
+<td>long[int]</td>
+<td>-2147483648($$-2^{31}$$)</td>
+<td>2147483647($$2^{31}-1$$)</td>
+</tr>
+<tr>
+<td>unsigned long [int]</td>
+<td>0</td>
+<td>4294967295($$2^{32}-1$$)</td>
+</tr>
+<tr>
+<td>long long[int]</td>
+<td>-9223372036854775808($$-2^{63}$$)</td>
+<td>9223372036854775807($$2^{63}-1$$)</td>
+</tr>
+<tr>
+<td>unsigned long long[int]</td>
+<td>0</td>
+<td>1844674407309551615($$2^{64}-1$$)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="无符号数的编码">无符号数的编码</h3><p>假设一个整数数据类型有w位,可以将位向量写成$$\vec x$$,把$$\vec x$$看做一个二进制表示的数,就获得了$$\vec x$$的无符号表示,用一个函数$$B2U_w$$表示.</p>
+<p>$$B2U<em>w(\vec x) \doteq \sum</em>{i=0}^{w-1}x_i2^i$$</p>
+<p>函数$$B2U_w$$将一个长度为w的0,1串映射到非负整数.</p>
+<p>$$B2U_4([0001])=0 \cdot 2^3+0 \cdot 2^2+0 \cdot 2^1+1 \cdot 2^0=0+0+0+1=1$$<br>$$B2U_4([0101])=0 \cdot 2^3+1 \cdot 2^2+0 \cdot 2^1+1 \cdot 2^0=0+4+0+1=5$$</p>
+<p>考虑下w位所能表示的值的范围,最小值是用位向量[00…0]表示,对应整数0,最大值用位向量[11…1]表示,对应整数值$$UMax<em>w \doteq \sum</em>{i=0}^{w-1}2^i=2^w-1$$.例如$$UMax_4=B2U_4([1111])=2^4-1=15$$</p>
+<blockquote>
+<p>每一个介于\(0 \sim 2^w - 1\)之间的无符号数都有唯一一个w位的值编码.</p>
+</blockquote>
+<h3 id="补码编码">补码编码</h3><p>最常用的有符号数的计算机表示方式就补码(two’s-complement)形式.字的最高有效位解释为负权(negative weight).用函数$$B2T_w$$表示:</p>
+<p>$$B2T<em>w(\vec x) \doteq -x</em>{w-1}2^{w-1}+ \sum_{i=0}^{w-2}x_i2^i$$</p>
+<p>最高有效位$$x_{w-1}$$称为符号位,其权重为$$-2^{w-1}$$.</p>
+<p>$$B2T_4([0101])=-0 \cdot 2^3+1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = 0+4+0+1=5$$<br>$$B2T_4([1111])=-1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = -8 + 4 + 2 + 1 = -1$$</p>
+<p>w位补码所能表示的范围,最小值是位向量[10…0],$$TMin<em>w \doteq -2^{w-1}$$,最大值是位向量[01…1],$$TMax_w \doteq \sum</em>{i=0}^{i=w-2}2^i \doteq 2^{w-1}-1$$</p>
+<blockquote>
+<p>每一个介于$$TMin_w \sim TMax_w$$之间的数字都有一个长度为w的位模式对应.</p>
+</blockquote>
+<p>补码的范围是不对称的:|TMin|=|TMax| + 1.TMin没有对应的正数,因为一半的位模式表示负数,而一半的数表示非负数,因为0是非负数,意味着正数比负数少一个.因此出现对最小值的绝对值还是负数的情况.</p>
+<blockquote>
+<p>java中Math.abs(Integer.MIN_VALUE) == Integer.MIN_VALUE 返回true</p>
+</blockquote>
+<p>最大的无符号数比补码的最大值的两倍大一:$$UMax_w = 2 \cdot TMax_w + 1$$,补码表示中所有的负数位模式在无符号中都表示成了正数.</p>
+<h3 id="有/无符号数之间的转换">有/无符号数之间的转换</h3><p>C语言允许在各种不同的数字数据类型之间做强制类型转换.例如x声明为int,u声明为unsigned.表达式(unsigned)x会将x的值转换成一个无符号数值.而(int)u将u的值转化成一个有符号整数.</p>
+<p>对C语言的实现来说,这个问题的回答都是从位级角度来看,而不是从数的角度.</p>
+<blockquote>
+<p>强制类型转换的结果保持位值不变,只是改变了解释这些位的方式.</p>
+</blockquote>
+<p>对大多数C语言的实现而言,处理同样字长的有符号数和无符号数之间相互转换的一般规则是:数值可能会变化,但是位模式不变.<br>因为$$B2U_w和B2T_w$$都是双射,定义$$U2B_w和T2B_w$$为其对应的逆映射.这些逆映射给出了一个数值的无符号或者补码的位模式.</p>
+<p>定义$$U2T_w(x) \doteq B2T_w(U2B_w(x))$$,函数的输入是一个$$0 \sim 2^w -1$$之间的数,结果是一个$$-2^{w-1} \sim 2^{w-1} - 1$$之间的值.</p>
+<p>类似的$$T2U_w(x) \doteq B2U_2(T2B_w(x))$$</p>
+<p>$$B2U<em>w(\vec x) - B2T_w(\vec x) = \sum</em>{i=0}^{w-1}x<em>i2^i - (-x</em>{w-1}2^{w-1} + \sum<em>{i=0}^{w-2}x_i2^i) = x</em>{w-1}2^{w-1} + x<em>{w-1}2^{w-1} = x</em>{w-1}2^w$$<br>即:$$B2U<em>w(\vec x) = x</em>{w-1}2^w + B2T_w(\vec x)$$</p>
+<p>如果令$$\vec x = T2B_w(x)$$就得到下面的公式:</p>
+<p>$$B2U<em>w(T2B_w(x)) = T2U_w(x) = x</em>{w-1}2^w + x$$</p>
+<p>在x的补码中,位$$x_{w-1}$$决定了x是否为负,得到:</p>
+<p>$$T2U_x(x)=\left{<br>\begin{aligned}<br>&amp;x + 2^w, &amp;x &lt; 0 \<br>&amp;x,&amp;x \ge 0<br>\end{aligned}<br>\right.$$</p>
+<p>对T2U来说,当将一个有符号数映射为它相应的无符号数时,负数就转换成了大的正数,而非负数会保持不变.</p>
+<p>反过来推到一个$$U2T<em>w(u)$$的关系,由可知<br>$$B2T_w{\vec u} = B2U_w{\vec u} - u</em>{w-1}2^w$$如果设置$$\vec u = U2B_w(u)$$则有:</p>
+<p>$$B2T<em>w(U2B_w(u)) = u - u</em>{w-1}2^w$$</p>
+<p>在u的无符号表示中,位$$u_{w-1}$$决定了u是否大于或者等于$$2^{w-1}$$,得到:</p>
+<p>$$U2T_w(u)=\left {<br>\begin{aligned}<br>&amp;u,&amp;x&lt;2^{w-1} \<br>&amp;u-2^w,&amp;u \ge 2^{w-1}<br>\end{aligned}<br>\right.$$</p>
+<p><strong>总结:</strong>无符号数与补码表示之间互相转换的结果,对于$$0 \le x &lt; 2^{w-1}$$范围之内的值x而言,得到$$T2U_w(x) = x 和 U2T_w(x) = x$$.这个范围内的数字有相同的无符号和补码表示.对于这个范围之外的数值,转换需要加上或者减去$$2^w$$.</p>
+<p>例如:$$T2U_w(-1) = -1 + 2^w = UMax_w$$. ———最靠近0的负数映射为最大的无符号数.</p>
+<p>$$T2U_w(TMin_w) = -2^{w-1} + 2^w = 2^{w-1} = TMax_w + 1$$. ———最小的负数映射为一个刚好在补码的正数范围之外的无符号数.</p>
+<h3 id="C语言中有/无符号数转换">C语言中有/无符号数转换</h3><p>C语言允许无符号数和有符号数之间的转换,转换的原则是底层的位表示保持不变.</p>
+<h3 id="扩展一个数字的位表示">扩展一个数字的位表示</h3><p>一种常见的运算是在不同字长的整数之间转换,同时又保持数值不变.如果目标数据类型太小以至于不能表示想要的值时,这是不可能的.从一个较小的数据类型转换到一个较大的类型时,应是可能的.</p>
+<blockquote>
+<p>将一个无符号数转换成一个更大的数据类型时,只需要做零扩展即可.(zero extension).<br>将一个补码数字转换成一个更大的数据类型时,只需要执行符号扩展即可.(sign extension).添加最高有效位的副本即可.</p>
+</blockquote>
+<p>C语言中是先改变大小,后进行符号的转变,例如把short转换成unsigned时,先扩展到int类型再转换成无符号类型.(unsigned) sx 等价于 (unsigned)(int)sx.</p>
+<h3 id="截断数字">截断数字</h3><p>将一个w位的数截断为一个k位数字时,丢弃高w-k位.截断一个数字可能会改变它的值(相当于溢出).</p>
+<blockquote>
+<p>对无符号数字x,截断到k位,相当于计算$$x mod 2^k$$.</p>
+</blockquote>
+<p>$$\begin{aligned} B2U<em>w([x</em>{w-1},x<em>{w-2},…,x_0]) mod 2^k &amp;=[\sum</em>{i=0}^{w-1}x<em>i2^i] mod 2^k\<br>&amp;=\sum</em>{i=0}^{k-1}x<em>i2^i \<br>&amp;=B2U_k([x</em>{k-1},x_{k-2},…,x_0])<br>\end{aligned}$$</p>
+<p>类似的:</p>
+<p>$$B2T<em>k([x</em>{k-1},x<em>{k-2},…,x_0])=U2T_k(B2U_w([x</em>{w-1},x_{w-2},…,x_0]) mod 2^k)$$</p>
+<p><em>C语言中有符号数和无符号式一起运算时是当做无符号数处理.</em></p>
+<h2 id="整数运算">整数运算</h2><p>因为计算机运算的有限性会造成两个正数相加得到一个负数,表达式x&lt;y和x-y&lt;0会有不一样的结果.</p>
+<h3 id="无符号加法">无符号加法</h3><p>两个非负整数x和y,满足$$0 \le x,y \le 2^w -1$$,每一个数都是w位的无符号数字.如果计算他们的和,得到$$0 \le x + y \le 2^{w+1} -2 $$.可能需要w+1位.</p>
+<p>无符号运算可以被视为一种模运算,无符号加法等价于计算和模上$$2^w$$,通过简单的丢弃w+1表示的最高位.</p>
+<p>定义参数x和y的运算$$+\frac{u}{w},0 \le x, y &lt; 2^w$$:</p>
+<p>$$x+\frac{u}{w}y=\left {<br>\begin{aligned}<br>&amp;x+y,&amp;x+y&lt;2^w\<br>&amp;x+y-2^w,&amp;2^w \le x + y &lt; 2^{w+1}<br>\end{aligned}<br>\right.$$</p>
+<p>C程序中,不会将溢出作为错误而发信号,有时可能希望判断是否发生了溢出.假设计算$$s \doteq x \frac{u}{w}y$$,判断s是否等于x+y.当且仅当s&lt;x(或者s&lt;y)时发生了溢出.因为$$x + y \ge x$$,如果没有溢出$$s \ge x$$.如果s确实溢出了有$$s=x+y-2^w$$,因为$$y &lt; 2^w$$,因此$$y-2^w&lt;0$$,因此$$s=x+(y-2^w) &lt; x$$.</p>
+<p>模数加法形成了一种数学结构,称为阿贝尔群,它是可以交换和可结合的.它有一个单位元0,并且每个元素有一个加法逆元.对w位的无符号数的集合,执行加法运算$$+\frac{u}{w}$$对每一个值x,必然有某个值$$-\frac{u}{w}x$$,满足$$-\frac{u}{w}x + \frac{u}{w}x=0$$.</p>
+<p>$$-\frac{u}{w}=\left {<br>\begin{align}<br>&amp;x,&amp;x=0\<br>&amp;2^w-x,&amp;x&gt;0<br>\end{align}<br>\right.<br>$$</p>
+<h3 id="补码加法">补码加法</h3><p>对于补码加法有$$-2^{w-1} \le x,y \le 2^{w-1}-1$$,如是有$$-2^w \le x+y \le 2^w -2$$,需要w+1位才能准确表示.与无符号数一样通过截断到w位表示.</p>
+<p>两个数的w位补码之和与无符号之和有完全相同的位级表示.定义$$+\frac{t}{w}$$<br>为x+y的补码加法.</p>
+<p>$$x+\frac{t}{w}y \doteq U2T_w(T2U_w(x)+\frac{u}{w}T2U_w(y))$$</p>
+<p>进一步推断有:</p>
+<p>$$<br>\begin{align}<br>x+\frac{t}{w}y&amp;=U2T<em>w(T2U_w(x) +\frac{u}{w} T2U_w(y))\<br>&amp;=U2T_w[(x</em>{w-1}2^w + x + y_{w-1}2^w + y) mod 2^w]\<br>&amp;=U2T_w[(x+y) mod 2^w]</p>
+<p>\end{align}<br>$$</p>
+<p>为了更好的理解,有如下的定义:</p>
+<p>$$z \doteq x + y$$</p>
+<p>$$z’ \doteq z  mod  2^w$$</p>
+<p>$$z’’ \doteq U2T_w(z’)$$</p>
+<p>这样$$z’’=x+\frac{t}{w}y$$</p>
+<ol>
+<li>$$-2^w \le z &lt; -2^{w-1}$$.则$$z’=z+2^w$$,因此$$0 \le z’ &lt; -2^{w-1} + 2^{w} =2^{w-1}$$,因此$$z’’=z’$$,这种情况为负溢出,得到一个非负结果$$z^n=x+y+2^w$$.</li>
+<li>$$-2^{w-1} \le z &lt; 0$$.则$$z’=z+2^w$$,因此$$-2^{w-1} + 2^w=2^{w-1} \le z’ &lt; 2^{w}$$,因此$$z’’=z’-2^w=z+2^w-2^w=z$$.</li>
+<li>$$0 \le z &lt; 2^{w-1}$$,则$$z’=z$$,因此$$0 \le z’ &lt; 2^{w-1}$$,因此$$z’’=z’=z$$.</li>
+<li>$$2^{w-1} \le z &lt; 2^w$$.则$$z’=z$$,因此$$2^{w-1} \le z’ &lt; 2^w$$.因此$$z’’=z’-2^w=x+y-2^w$$.</li>
+</ol>
+<p>因此得出下面的结果:</p>
+<p>$$<br>x+\frac{t}{w}y=\left{<br>\begin{align}<br>&amp;x+y+2^w,&amp;x+y &lt; -2^{w-1}\<br>&amp;x+y,&amp;-2^{w-1} \le x+y &lt; 2^{w-1}\<br>&amp;x+y-2^w,&amp;2^{w-1}\le x+y<br>\end{align}<br>\right.<br>$$</p>
+<blockquote>
+<p>如果x,y都是正数,但是$$x+\frac{t}{w}y &lt; 0$$则正溢出.<br>如果x,y都是负数,但是$$x+\frac{t}{w}y &gt;= 0$$则负溢出.</p>
+</blockquote>
+<p>例如:5位参数时值应该是$$[-16 \sim 15]$$</p>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>x+y</th>
+<th>$$x+\frac{t}{w}y$$</th>
+<th>情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[10100]</td>
+<td>[10001]</td>
+<td>-12 + -15 = -27</td>
+<td>-27 + 32 = 5</td>
+<td>负溢出</td>
+</tr>
+<tr>
+<td>[11000]</td>
+<td>[11000]</td>
+<td>-8 + -8 = -16</td>
+<td>-16</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>[10111]</td>
+<td>[01000]</td>
+<td>-9 + 8 = -1</td>
+<td>-1</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>[00010]</td>
+<td>[00101]</td>
+<td>2 + 5= 7</td>
+<td>7</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>[01100]</td>
+<td>[00100]</td>
+<td>12 + 4 = 16</td>
+<td>16 - 32 = -16</td>
+<td>正溢出</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>特别要注意TMin因为-TMin=TMin</strong></p>
+</blockquote>
+<h3 id="补码的非">补码的非</h3><p>对于$$-2^{w-1} \le x &lt; 2^{w-1}$$中的每一个数字x都有$$+\frac{t}{w}$$下的加法逆元.</p>
+<ol>
+<li>$$x \ne -2^{w-1}$$,其加法逆元就是-x.因为$$-2^{w-1} &lt; x &lt; 2^{w-1}$$,因此$$-x+\frac{t}{w}x=-x+x=0$$.</li>
+<li>如果$$x=-2^{w-1}=TMin_w$$,则$$-x=2^{w-1}$$不能用一个w位的数.这个特殊值其本身就是它自己的加法逆元.</li>
+</ol>
+<p>因此可以得出补码的非运算:</p>
+<p>$$<br>-\frac{t}{w}x=\left{<br>\begin{align}<br>&amp;-2^{w-1},&amp;x=-2^{w-1}\<br>&amp;-x,&amp;x&gt;-2^{w-1}<br>\end{align}<br>\right.<br>$$</p>
+<p>补码非的位级表示:</p>
+<ol>
+<li>全部取反后加1.</li>
+<li>从右到左第一个1之后的左边的其他位全部取反.</li>
+</ol>
+<h3 id="无符号数乘法">无符号数乘法</h3><p>两个w位的无符号数乘法,其乘积可能需要2w位来表示,C语言中无符号乘法定义为产生w位的值,因此只会保留乘积的低w位.等价于计算乘积模$$2^w$$.</p>
+<p>$$x \cdot \frac{u}{w}y=(x \cdot y) mod 2^w$$</p>
+<h3 id="补码乘法">补码乘法</h3><p>同样对于w位的补码乘法,也需要2w位来表示,C语言中无补码的乘法也是通过截取低w位表示,与无符号具有相同的位结构.</p>
+<p>$$x \cdot \frac{t}{w}y = U2T_w((x \cdot y) mod 2^2)$$</p>
+<p>认为w位的向量$$\vec x, \vec y$$,无符号乘积$$B2U_w(\vec x) \cdot \frac{u}{w}B2U_w(\vec y)$$与补码乘积$$B2T_w(\vec x) \cdot \frac{t}{w}B2T_w(\vec y)$$具有相同的位级表示.</p>
+<p>证明如下:</p>
+<ol>
+<li>假设$$x=B2T_w(\vec x),y=B2T_w(\vec y)$$是位模式表示的补码值.<br>&nbsp;&nbsp;$$x’=B2U_w(\vec x), y’=B2U_w(\vec y)$$是位模式表示的无符号值.</li>
+<li>由之前的推断有$$x’=x+x<em>{w-1}2^w,y’=y+y</em>{w-1}2^w$$.计算后有如下的结果:</li>
+</ol>
+<p>$$<br>\begin{align}<br>(x’ \cdot y’)mod 2^w&amp;=[(x+x<em>{w-1}2^w)\cdot(y+y</em>{w-1}2^w)]mod 2^w\<br>&amp;=[x \cdot y + (x<em>{w-1} + y</em>{w-1})2^w + (x<em>{w-1}y</em>{w-1}2^{2w})]mod2^w\<br>&amp;=(x \cdot y)mod 2^w<br>\end{align}<br>$$</p>
+<blockquote>
+<p>w位数字上的无符号运算和补码运算是同构的—-运算$$+\frac{u}{w},-\frac{u}{w},\cdot\frac{u}{w}$$和$$+\frac{t}{w},-\frac{t}{w},\cdot\frac{t}{w}$$在位级上有相同的结果.</p>
+</blockquote>
+<p>列子:</p>
+<table>
+<thead>
+<tr>
+<th>$$模式$$</th>
+<th>$$x$$</th>
+<th>$$y$$</th>
+<th>$$x \cdot y$$</th>
+<th>$$截断后的x \cdot y$$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无符号</td>
+<td>[100] 4</td>
+<td>[101] 5</td>
+<td>[10100] 20</td>
+<td>[100] 4</td>
+</tr>
+<tr>
+<td>补码</td>
+<td>[100] -4</td>
+<td>[101] -3</td>
+<td>[01100] 12</td>
+<td>[100] -4</td>
+</tr>
+<tr>
+<td>无符号</td>
+<td>[010] 2</td>
+<td>[111] 7</td>
+<td>[01110] 14</td>
+<td>[110] 6</td>
+</tr>
+<tr>
+<td>补码</td>
+<td>[010] 2</td>
+<td>[111] -1</td>
+<td>[11110] -2</td>
+<td>[110] -2</td>
+</tr>
+<tr>
+<td>无符号</td>
+<td>[110] 6</td>
+<td>[110] 6</td>
+<td>[00100] 36</td>
+<td>[100] 4</td>
+</tr>
+<tr>
+<td>补码</td>
+<td>[110] -2</td>
+<td>[110] -2</td>
+<td>[00100] 4</td>
+<td>[100] -4</td>
+</tr>
+</tbody>
+</table>
+<p>下面的函数当参数相乘不产生溢出时返回1</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">tmult_ok</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = x*y;</span><br><span class="line">    <span class="keyword">return</span> !x || p/x == y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="乘以常数">乘以常数</h3><p>大多数机器上,整数乘法指令相当慢,需要10个或者更多的时钟周期.而其他整数运算(加法,减法,位运算,移位)只需要1个时钟周期.因此编译器会试着通过移位和加法运算的组合来代替乘以常数因子的乘法.</p>
+<p>$$<br>\begin{align}<br>B2U<em>w([x</em>{w-1},x<em>{w-2},…,x_0,0,…,0])&amp;=\sum</em>{i=0}^{w-1}x<em>i2^{i+k}\<br>&amp;=[\sum</em>{i=0}^{w-1}x_i2^i] \cdot 2^k\<br>&amp;=x2^k<br>\end{align}<br>$$</p>
+<p>同样对于补码也有同样的结果.通过向左移位k位相当于乘以$$2^k$$</p>
+<p>对$$x \cdot K$$,编译器会将K的二进制表示成一组0和1交替的序列:[(0…0)(1…1)…(0…0)]<br>例如,14可以写成[(0…0)(111)(0)],从第1位到第3位为1,则可以通过下面的方式进行计算.</p>
+<ol>
+<li>$$(x &lt;&lt; n) + (x &lt;&lt; n-1)+…+(x&lt;&lt;m)$$</li>
+<li>$$(x&lt;&lt;n)+(x&lt;&lt;n)-(x&lt;&lt;m)$$,避免n+1为最高位的情况.</li>
+</ol>
+<p>编译器只有在可以通过少量的移位,加法和减法就足够时才进行优化.</p>
+<h3 id="除以2的幂">除以2的幂</h3><p>大多数机器上,整数除法比整数乘法更慢—-需要30个或者更多时钟周期.除以2的幂也可以使用移位运算来实现,无符号和补码分别使用逻辑右移和算术右移.</p>
+<p>假设x为位模式$$[x<em>{w-1},x</em>{w-2},…x<em>0]$$表示的无符号整数,$$0 \le k &lt; w$$.假设$$x’为w-k$$位的位表示$$[x</em>{w-1},x<em>{w-2},…x_k]$$的无符号数,而$$x’’为k$$位的位表示$$[x</em>{k-1},x_{k-2},…x_0]$$的无符号数,则可以得到$$x’=\lfloor x/2^k \rfloor $$.证明如下:</p>
+<p>$$<br>\begin{align}<br>&amp;假设:x=\sum<em>{i=0}^{w-1}x_i2^i,x’=\sum</em>{i=0}^{w-k}x<em>i2^i,x’’=\sum</em>{i=0}^{k}x_i2^i\<br>&amp;因此x=x’2^k+x’’,0 \le x’’ \le 2^k-1 &lt; 2^k,\lfloor x’’/2^k \rfloor = 0\<br>&amp;所以\lfloor x/2^k \rfloor = \lfloor x’2^k/2^k + x’’/2^k \rfloor = x’ + \lfloor x’’/2^k\rfloor = x’<br>\end{align}<br>$$</p>
+<p>对补码而言进行的是算术右移,对正整数而言,最高位为0,效果和逻辑右移一样.如果为负数时,则是向上取整.例如-7/2应该得到-3而不是-4.</p>
+<p>对与整数x和任意的y&gt;0,有$$\lceil x/y \rceil = \lfloor (x + y -1)/y \rfloor$$通过增加偏移量后都可以表示为向下取整.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过移位进行除法运算</span></span><br><span class="line">(x &gt; <span class="number">0</span> ? x :(x + (<span class="number">1</span>&lt;&lt;k) -<span class="number">1</span>)) &gt;&gt; k</span><br></pre></td></tr></table></figure>
+<h3 id="思考">思考</h3><p>计算机执行的整数运算实际上是一种模运算形式,表示数字的有限字长限制了可能的值的取值范围,结果运算可能溢出.补码提供了一种既能表示负数也能表示正数,同时使用了与执行无符号算术相同的位级实现.</p>
+<h2 id="浮点数">浮点数</h2><h3 id="二进制小数">二进制小数</h3><p>理解浮点数先考虑含有小数值的二进制数字.</p>
+<p>十进制表示法使用的表示形式为:$$d<em>md</em>{m-1}…d<em>1d_0.d</em>{-1}d<em>{-2}…d</em>{-n}$$,其中每个十进制数$$d_i$$的范围为$$0 \sim 9$$.可以用下面的方法描述:</p>
+<p>$$<br>d = \sum_{i=-n}^{m}10^i \cdot d_i<br>$$</p>
+<p>数字权的定义与十进制小数点符号$$\cdot$$相关,意味着小数点左边的数字的权是10的正幂,得到整数值,而小数点右边的数字的权是10的负幂,得到小数值.例如$$12.34_{10}$$表示数字$$1 \cdot 10^1 + 2 \cdot 10^0 + 3 \cdot 10^{-1} + 4 \cdot 10^{-2} = 12 \frac{34}{100}$$</p>
+<p>类似的$$b<em>mb</em>{m-1}…b<em>1b_0 \cdot b</em>{-1}b<em>{-2}…b</em>{-n+1}b_{-n}$$其中$$b_i$$的范围为$$0 \sim 1$$,这种表示方法表示的数b定义如下:</p>
+<p>$$<br>b=\sum_{i=-n}^{m}2^i \cdot b_i<br>$$</p>
+<p>符号$$\cdot$$成了二进制的点,点左边的位的权是2的正幂,点右边的位的权是2的负幂.例如$$101.11_2$$表示数字$$1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 + 1 \cdot 2^{-1} + 1 \cdot 2^{-2} = 4 + 0 + 1 + \frac{1}{2} + \frac{1}{4} = 5\frac{3}{4}$$</p>
+<p><em>二进制小数点向左移动一位相当于这个数被2除,类似的二进制小数点向右移动一位相当与将该数乘2.</em></p>
+<p><em>形如$$[0.11…1_2]$$的数表示刚好小于1的数.例如$$[0.111111_2]$$表示$$\frac{63}{64}$$,用$$1.0- \varepsilon$$来表示.</em></p>
+<p>考虑有限长度的编码,十进制表示法不能准确地表示像$$\frac{1}{3},\frac{5}{7}$$这样的数.类似地,小数的二进制表示法只能表示那些能够被写成$$x \cdot 2^y$$的数.<em>增加二进制的长度可以增加表示的精度</em></p>
+<table>
+<thead>
+<tr>
+<th>小数值</th>
+<th>二进制表示</th>
+<th>十进制表示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$$\frac{1}{8}$$</td>
+<td>0.001</td>
+<td>0.125</td>
+</tr>
+<tr>
+<td>$$\frac{3}{4}$$</td>
+<td>0.110</td>
+<td>0.75</td>
+</tr>
+<tr>
+<td>$$\frac{25}{16}$$</td>
+<td>1.1001</td>
+<td>1.562</td>
+</tr>
+<tr>
+<td>$$\frac{43}{16}$$</td>
+<td>10.1011</td>
+<td>2.687</td>
+</tr>
+<tr>
+<td>$$\frac{9}{8}$$</td>
+<td>1.001</td>
+<td>1.125</td>
+</tr>
+<tr>
+<td>$$\frac{47}{8}$$</td>
+<td>101.111</td>
+<td>5.875</td>
+</tr>
+<tr>
+<td>$$\frac{51}{16}$$</td>
+<td>11.0011</td>
+<td>3.1875</td>
+</tr>
+</tbody>
+</table>
+<h3 id="IEEE浮点表示">IEEE浮点表示</h3><p>之前谈到的定点表示法不能有效地表示非常大的数字.希望通过给点的x和y,来表示形如$$x \cdot 2^y$$的数.</p>
+<p>IEEE浮点标准用$$V=(-1)^s \cdot M \cdot 2^E$$的形式来表示一个数:</p>
+<ul>
+<li>符号(sign)s决定这个数是负数(s=1)还是正数(s=0).对应数值0的符号位结实作为特殊情况处理.</li>
+<li>尾数(significand)M是一个二进制小数,它的范围为$$1 \sim 2-\varepsilon$$,或者$$0 \sim 1- \varepsilon$$</li>
+<li>阶码(exponent)E的作用是对浮点数加权,这个权重是2的E次幂(可能为负数)</li>
+</ul>
+<p>将浮点数的位表示划分为三个字段,分别对这些字段进行编码:</p>
+<ul>
+<li>一个单独的符号位s直接编码符号s.</li>
+<li>k位的阶码字段$$exp=e_{k-1}…e_1e_0$$编码阶码.</li>
+<li>n位小数字段$$frac=f_{n-1}…f_1f_0$$编码尾数M.编码出来的值也依赖于阶码字段的值是否等于0.</li>
+</ul>
+<p>C语言的float中,s,exp和frac字段分别为1位,k=8位和n=23位,得到一个32位的表示.<br>C语句的double中,s,exp和frac字段分别为1位,k=11位和n=52位,得到一个64位的表示.</p>
+<p>根据位的表示,通过exp的值,被编码的值可以分成三种不同的情况.</p>
+<ol>
+<li>规格化的 $$exp \ne 0 且 exp \ne 255$$</li>
+<li>非规格化的 exp = 0</li>
+<li>非规格化的 exp = 255, $$f=0 表示无穷大, f \ne 0 表示 NaN$$</li>
+</ol>
+<p><strong>情况1:规格化的值</strong><br>这是最普通的情况,当exp的位模式记不全为0(数值0),也不全为1(单精度数值为255,双精度数值为2047)时,都属于这类情况.这种情况下阶码字段被解释为以偏置(biased)形式表示的有符号整数.阶码的值E = e - Bias,其中e是无符号数,其位表示为$$e_{k-1}…e_1e_0$$,而$$Bias=2^{k-1} -1$$的偏置值(单精度127,双精度1023),因此指数的范围为单精度$$-126 \sim +127$$,双精度为$$-1022 \sim + 1023$$.</p>
+<p>小数字段frac的解释为描述小数值f,其中$$0 \le f &lt; 1$$.二进制表示为[0.f_{n-1}…f_1f_0]也就是二进制小数点在最高有效位的左边.尾数定义为M=1+f.这种方式叫做隐含的以1开头的表示.通过调整阶码E,使得尾数M在范围$$1 \le M &lt; 2$$(假设没有溢出),这样就获得了一个额外精度.因为第一位总是1,不需要显示地表示.</p>
+<p><strong>情况2:非规格化的值</strong><br>当阶码域全为0时,阶码的值是$$E=1-Bias$$,尾数的值是M=f,不包含隐含的开头的1.</p>
+<p>非规格化数有两个用途,首先提供了一种表示数值0的方法,规格化数中$$M \ge 1$$因此不能表示0.这样+0.0的浮点表示的位模式为全0,得到$$M=f=0$$.符号位为1,其他域全为0时,得到-0.0.</p>
+<p>其次提供了一个功能表示那些非常接近0.0的数,称为<em>逐渐溢出</em>,其中,可能的数值分布均匀地接近于0.0.</p>
+<p><strong>情况3:特殊值</strong></p>
+<p><em>当阶码全为1时:</em>如果小数域全为0时,得到无穷,当s=0时是$$+ \infty$$,当s=1时是$$- \infty$$.</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;如果小数域为非0时,结果为NaN(Not a Number).例如$$\infty - \infty$$.</p>
+<p>假定8位浮点格式,其中k=4的阶码位和n=3的小数位.偏置量$$Bias=2^{4-1}-1=7$$,分成三个区域来描述三类数字.给出了阶码字段如何编码阶码E,小数字段如何编码尾数M.以及如何一起形成要表示的值$$V=2^E \cdot M$$</p>
+<p>最靠近0的是非规格化数,这种格式下的$$E=1-7=-6$$,得到权$$2^E=\frac{1}{64}$$.</p>
+<p>小数f的值的范围是$$0,\frac{1}{8},…,\frac{7}{8}$$,从而得到V的范围是$$0 \sim \frac{1}{64} \cdot \frac{7}{8} = \frac{7}{512}$$.</p>
+<p>此种情况下的最小规格化数同样有$$E=1-7=-6$$,并且小数取值范围也是$$0,\frac{1}{8},…,\frac{7}{8}$$.然而尾数的范围在$$1+0=1=\frac{8}{8}和1+\frac{7}{8}=\frac{15}{8}$$之间得出V的范围在$$\frac{8}{8} \cdot 2 ^{-6} = \frac{8}{512}=\frac{1}{64}和\frac{15}{8} \cdot 2^{-6} = \frac{15}{512}$$之间.可以看到最大非规格化数$$\frac{7}{512}$$和最小规格化数$$\frac{8}{512}$$之间的平滑转变.这是对非规格化数E定义为1-Bias的原因.通过1-Bias可以补偿非规格化数尾数没有隐含开头的1这一事实.</p>
+<p>当增大阶码时,得到更大的规格化值.最大的规格化阶码$$E=(2^4-1)-1-Bias=7$$得到权$$2^E=128$$,小数等于$$\frac{7}{8}$$从而尾数$$M=1+\frac{7}{8}=\frac{15}{8}$$,因此$$V=\frac{15}{8} \cdot 128 = 240 $$.超出这个值就得到$$+\infty$$.</p>
+<p>如果把位表达式解释为无符号整数,发现是按升序排列的,跟浮点数一样,IEEE如此设计格式是为了浮点数能够使用整数排序函数来进行排序.当处理负数时,有一个小的难点,因为他们有开头的1,并且是按照降序出现的.</p>
+<table><br><tr><br>    <td rowspan="2" align="center">描述</td><td rowspan="2" align="center">位表示</td><td colspan="3" align="center">指数</td><td colspan="2" align="center">小数</td><td colspan="3" align="center">值</td><br></tr><br><tr><br>    <td>e</td><td>E</td><td>$$2^E$$</td><td>t</td><td>M</td><td>$$2^E \cdot M$$</td><td>V</td><td>十进制</td><br></tr><br><tr><br>    <td>0</td><td>0 0000 000</td><td>0</td><td>-6</td><td>$$\frac{1}{64}$$</td><td>$$\frac{0}{8}$$</td><td>$$\frac{0}{8}$$</td><td>$$\frac{0}{512}$$</td><td>0</td><td>0.0</td><br></tr><br><br><tr><br>    <td>最小的非规格化数</td><td>0 0000 001</td><td>0</td><td>-6</td><td>$$\frac{1}{64}$$</td><td>$$\frac{1}{8}$$</td><td>$$\frac{1}{8}$$</td><td>$$\frac{1}{512}$$</td><td>$$\frac{1}{512}$$</td><td>0.001953</td><br></tr><br><tr><br>    <td>…</td><td>0 0000 010</td><td>0</td><td>-6</td><td>$$\frac{1}{64}$$</td><td>$$\frac{2}{8}$$</td><td>$$\frac{2}{8}$$</td><td>$$\frac{2}{512}$$</td><td>$$\frac{1}{256}$$</td><td>0.003906</td><br></tr><br><tr><br><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><br></tr><br><tr><br>    <td>最大的非规格化数</td><td>0 0000 111</td><td>0</td><td>-6</td><td>$$\frac{1}{64}$$</td><td>$$\frac{7}{8}$$</td><td>$$\frac{7}{8}$$</td><td>$$\frac{7}{512}$$</td><td>$$\frac{7}{512}$$</td><td>0.013672</td><br></tr><br><br><tr><br>    <td>最小的规格化数</td><td>0 0001 000</td><td>0</td><td>-6</td><td>$$\frac{1}{64}$$</td><td>$$\frac{0}{8}$$</td><td>$$\frac{8}{8}$$</td><td>$$\frac{8}{512}$$</td><td>$$\frac{1}{64}$$</td><td>0.015625</td><br></tr><br><br><tr><br>    <td>…</td><td>0 0001 001</td><td>0</td><td>-6</td><td>$$\frac{1}{64}$$</td><td>$$\frac{1}{8}$$</td><td>$$\frac{9}{8}$$</td><td>$$\frac{9}{512}$$</td><td>$$\frac{9}{512}$$</td><td>0.017578</td><br></tr><br><tr><br><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><br></tr><br><tr><br>    <td>1</td><td>0 0111 000</td><td>7</td><td>0</td><td>1</td><td>$$\frac{0}{8}$$</td><td>$$\frac{8}{8}$$</td><td>$$\frac{8}{8}$$</td><td>1</td><td>1.0</td><br></tr><br><tr><br><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><br></tr><br><tr><br>    <td>…</td><td>0 1110 110</td><td>14</td><td>7</td><td>128</td><td>$$\frac{6}{8}$$</td><td>$$\frac{14}{8}$$</td><td>$$\frac{1792}{8}$$</td><td>224</td><td>224.0</td><br></tr><br><br><tr><br>    <td>最大的规格化数</td><td>0 1110 111</td><td>14</td><td>7</td><td>128</td><td>$$\frac{7}{8}$$</td><td>$$\frac{15}{8}$$</td><td>$$\frac{1920}{8}$$</td><td>240</td><td>240.0</td><br></tr><br><br><tr><br>    <td>无穷大</td><td>0 1111 000</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>$$\infty$$</td><td>-</td><br></tr><br><br></table>
+
+<p>k位阶码和n位小数的浮点表示的一般属性.</p>
+<ul>
+<li>值+0.0总有一个全为0的位表示.</li>
+<li>最小的正非规格化值的位表示,由最低有效位为1而其他所有位为0构成,具有小数(尾数)值$$M=f=2^{-n}$$,阶码值$$E=1 - (2^{k-1}-1) = 2-2^{k-1}$$.因此$$V=2^{-n-2^{k-1}+2}$$</li>
+<li>最大的非规格化值的为模式为由全为0的阶码字段和全为1的小数字段组成.具有小数(尾数)值$$M=f=1-2^{-n}$$,阶码仍然是$$E=2-2^{k-1}$$.因此$$V=(1-2^{-n}) \cdot 2^{-2^{k-1}+2}$$.仅比最小的规格化值小一点.</li>
+<li>最小的正规格数阶码的最低有效位为1,其他位全为0,$$V=2^{-2^{k-1} + 2}$$</li>
+<li>值1.0的位表示的阶码字段的最高有效位为0,阶码的其他字段为1,阶码外的其他位都是0.尾数值为1,阶码为0.</li>
+<li>最大的规格化值的符号位为0,阶码的最低有效位为0,其他位都是1.小数值$$f=1-2^{-n}$$,尾数$$M=2-2^{-n}$$.阶码$$E=(2^k-1-1) - (2^{k-1} - 1)) = 2^{k-1}-1$$,因此$$V=(2-2^{-n} \cdot 2^{2^{k-1}-1} = (1-2^{-n-1}) \cdot 2^{2^{k-1}}$$</li>
+</ul>
+<p><strong>整数转换成浮点形式例子:</strong></p>
+<p>12345的二进制形式为[11000000111001],通过将二进制小数点左移13位,得到这个数的一个规格化表示$$12345=1.1000000111001_2 \cdot 2^{13}$$.用IEEE单精度表示来编码,丢弃开头的1.并且在末尾增加10个0[C语言中float的n=23],构造小数字段.得到二进制表示[10000001110010000000000],阶码字段,用13加上偏移量127得到140,其二进制表示为[10001100][C语言中float的k=8],加上符号位0.得到二进制的浮点表示.[01000110010000001110010000000000],可以看出对应整数的低位,刚好在等于1的最高有效位之前停止.</p>
+<p>0000000000000000001<em>1000000111001</em>整数表示</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;010001100<em>1000000111001</em>0000000000 浮点数表示</p>
+<p><em>在阶码字段长度k足够大时,n位小数的浮点格式不能准确描述的最小正整数为$$2^{n+1} + 1$$,相当于1后面跟n个0再跟一个1,这样就需要n+1位才能表示.</em></p>
+<h3 id="舍入">舍入</h3><p>表示方法限制了浮点数的范围和精度,浮点运算只能近似地表示实数运算.对于x我们一般想用一种系统的方法找到最接近的x’.一个问题是需要在两个可能值的中间确定舍入方向.例如1.5美元,舍入后应该是1美元还是2美元?</p>
+<p>一种可选择的方式是维持实际数字的下界和上界.例如:$$x^- \le x \le x^+$$,IEEE定义了四种不同的舍入方式,默认的方式是找到最接近的匹配,其他三种可用于计算上界和下界.</p>
+<p>向偶数舍入(round-to-even)也称为向最接近的值舍入(round-to-nearest)是默认的方式,试图找到一个最接近的匹配值.采用的方式是使得结果的最低有效数字是偶数.因此1.5和2.5都被舍入为2.</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>1.40</th>
+<th>1.60</th>
+<th>1.50</th>
+<th>2.50</th>
+<th>-1.50</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>向偶数舍入</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>向零舍入</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>向下舍入</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>向上舍入</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浮点运算">浮点运算</h3><p>把浮点值x和y看出实数,而某个运算$$\bigodot$$定义在实数上,计算将产生Round(x$$\bigodot$$y),这是对实际运算的精确结果进行舍入后的结果.</p>
+<p>当参数中有一个特殊值(例如-0,$$-\infty$$或NaN)时,IEEE标准定义了一些使之更合理的规则.<br>例如:$$1/-0=-\infty$$,而$$1/+0=+\infty$$</p>
+<p>定义$$x+^fy=Round(x+y)$$,这个运算是可交换的也就是说$$x+^fy=y+^fx$$,另一方面这个运算是不可结合的.</p>
+<p>大多数值的浮点加法都有逆元,也就是说$$x+^f-x=0$$,无穷和NaN是例外情况.($$+\infty - \infty = NaN$$),$$NaN +^f x= NaN$$</p>
+<p>浮点加法不具有结合性,是缺少的最重要的群属性,对编译器编写者和科学计算程序员来说,具有重要含义.例如如下面的代码片段:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = a + b + c;</span><br><span class="line">y = b + c + d;</span><br></pre></td></tr></table></figure>
+<p>编译器可能试图产生下列代码来省去一个浮点加法:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = b + c;</span><br><span class="line">x = a + t;</span><br><span class="line">y = t + d;</span><br></pre></td></tr></table></figure>
+<p>然而对于x来说,这个计算可能会产生与原始值不同的值.因为浮点数的加法运算是不可结合的.编译器无法知道原始程序的确切行为,因此倾向于保守.</p>
+<p>浮点加法满足单调性属性:如果$$a \ge b$$,对于任何a,b及x的值,除了NaN,都有$$x + a \ge x + b$$.无符号和补码加法不具有这个属性(溢出).</p>
+<p>浮点乘法,定义$$x \cdot ^fy=Round(x \cdot y)$$,是可交换的,因为可能溢出,或者由于舍入而失去精度,也是不可结合的.例如$$(1e20 \cdot 1e20) \cdot 1e-20 = +\infty$$,但是$$1e20 \cdot (1e20 \cdot 1e-20) = 1e20$$.</p>
+<p>浮点乘法在加法上不具备分配性.例如$$1e20 \cdot (1e20 - 1e20) = 0.0$$,但是$$1e20 \cdot 1e20 - 1e20 \cdot 1e20 = NaN$$.</p>
+<p>对于任何a,b,c并且a,b,c都不等于NaN,浮点乘法满足下面的单调性:</p>
+<p>$$a \ge b 且 c \ge 0 =&gt; a \cdot^f c \ge b \cdot^f c$$</p>
+<p>$$a \ge b 且 c \le 0 =&gt; a \cdot^f c \le b \cdot^f c$$</p>
+<p>另外只要$$a \ne NaN$$,就有$$a \cdot^f a \ge 0$$</p>
+<h3 id="C语言中的浮点数">C语言中的浮点数</h3><p>所有的C语言版本提供两种不同的浮点数据类型:float和double.在支持IEEE浮点格式的机器上,这些数据类型对应单精度和双精度浮点.另外这类机器使用向偶数舍入的方式.因为C语言标准不要求机器使用IEEE浮点,所以没有标准的方法来改变舍入方式,和得到特殊值.</p>
+<p>当在int,float,double格式之间进行强制类型转换时,程序改变数值和位模式的原则如下(假设int是32位):</p>
+<ul>
+<li>从int到float,数字不会溢出,但是可能被舍入.</li>
+<li>从int或float转换成double,能够保留精确的数值.</li>
+<li>从daouble到float,可能会溢出成为$$+\infty或-\infty$$,另外由于精确度较小,还可能被舍入.</li>
+<li>从float或daouble转换成int,值向零舍入.值还能会溢出.</li>
+</ul>
+<h2 id="小结">小结</h2><p>由于编码的长度有限,与传统整数和实数运算相比,计算机运算具有完全不同的属性.当超出表示范围时,有限长度能够引起数值溢出,当浮点数非常接近0.0,从而转换成0时,也会下溢.</p>
+<blockquote>
+<p>可以通过(1&lt;&lt;k)-1生成[0,…0,1,…1]的位模式(k个1)</p>
+</blockquote>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/"> #OS </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/27/2015-01-17-深入理解计算机系统-笔记三/">深入理解计算机系统(笔记三)</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/11/20/2014-11-20-深入理解计算机系统-笔记六/">深入理解计算机系统(笔记六)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+
+    
+      <div class="comments" id="comments">
+        
+          <div class="ds-thread" data-thread-key="2015/01/17/2015-01-27-深入理解计算机系统-笔记二/"
+               data-title="深入理解计算机系统(笔记二)" data-url="http://www.wjainng.com/2015/01/17/2015-01-27-深入理解计算机系统-笔记二/">
+          </div>
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="WJ" />
+          <p class="site-author-name">WJ</p>
+        </div>
+        <p class="site-description motion-element">欢迎来到WJAINNG</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+        
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#信息的表示和处理"><span class="nav-number">1.</span> <span class="nav-text">信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息存储"><span class="nav-number">1.1.</span> <span class="nav-text">信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#十六进制表示法"><span class="nav-number">1.1.1.</span> <span class="nav-text">十六进制表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字"><span class="nav-number">1.1.2.</span> <span class="nav-text">字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据大小"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻址和字节顺序"><span class="nav-number">1.1.4.</span> <span class="nav-text">寻址和字节顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表示字符串"><span class="nav-number">1.1.5.</span> <span class="nav-text">表示字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表示代码"><span class="nav-number">1.1.6.</span> <span class="nav-text">表示代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔代数简介"><span class="nav-number">1.1.7.</span> <span class="nav-text">布尔代数简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C语言中的位运算"><span class="nav-number">1.1.8.</span> <span class="nav-text">C语言中的位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C语言中的逻辑运算"><span class="nav-number">1.1.9.</span> <span class="nav-text">C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C语言中的移位运算"><span class="nav-number">1.1.10.</span> <span class="nav-text">C语言中的移位运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数表示"><span class="nav-number">1.2.</span> <span class="nav-text">整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">整型数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号数的编码"><span class="nav-number">1.2.2.</span> <span class="nav-text">无符号数的编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码编码"><span class="nav-number">1.2.3.</span> <span class="nav-text">补码编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有/无符号数之间的转换"><span class="nav-number">1.2.4.</span> <span class="nav-text">有/无符号数之间的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C语言中有/无符号数转换"><span class="nav-number">1.2.5.</span> <span class="nav-text">C语言中有/无符号数转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展一个数字的位表示"><span class="nav-number">1.2.6.</span> <span class="nav-text">扩展一个数字的位表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截断数字"><span class="nav-number">1.2.7.</span> <span class="nav-text">截断数字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数运算"><span class="nav-number">1.3.</span> <span class="nav-text">整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号加法"><span class="nav-number">1.3.1.</span> <span class="nav-text">无符号加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码加法"><span class="nav-number">1.3.2.</span> <span class="nav-text">补码加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码的非"><span class="nav-number">1.3.3.</span> <span class="nav-text">补码的非</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号数乘法"><span class="nav-number">1.3.4.</span> <span class="nav-text">无符号数乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码乘法"><span class="nav-number">1.3.5.</span> <span class="nav-text">补码乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乘以常数"><span class="nav-number">1.3.6.</span> <span class="nav-text">乘以常数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除以2的幂"><span class="nav-number">1.3.7.</span> <span class="nav-text">除以2的幂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">1.3.8.</span> <span class="nav-text">思考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数"><span class="nav-number">1.4.</span> <span class="nav-text">浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制小数"><span class="nav-number">1.4.1.</span> <span class="nav-text">二进制小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE浮点表示"><span class="nav-number">1.4.2.</span> <span class="nav-text">IEEE浮点表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#舍入"><span class="nav-number">1.4.3.</span> <span class="nav-text">舍入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点运算"><span class="nav-number">1.4.4.</span> <span class="nav-text">浮点运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C语言中的浮点数"><span class="nav-number">1.4.5.</span> <span class="nav-text">C语言中的浮点数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">WJ</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+<div class="powered-by">
+</div>
+本站总访问量<span id="wjainng_value_site_pv"></span>次
+本站访客数<span id="wjainng_value_site_uv"></span>人次
+本文总阅读量<span id="wjainng_value_page_pv"></span>次
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wjainng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+  
+  
+
+</body>
+</html>
