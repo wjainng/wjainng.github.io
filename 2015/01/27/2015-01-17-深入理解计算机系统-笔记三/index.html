@@ -314,7 +314,7 @@
 <p><em>C语言数据类型在IA32中的大小,IA32中不支持64位整数运算,编译带有long long数据的代码,需要产生一些操作序列,以32位为单位执行运算</em></p>
 <p>数据传送指令有三个变种:movb(传送字节),movw(传送字)和movl(传送双字).l用来表示双字(将32位数看成是长字 long word).汇编代码也使用l来表示4字节整数和8字节双精度浮点数,因为浮点数使用不同的指令和寄存器.</p>
 <h2 id="访问信息">访问信息</h2><p>一个IA32中央处理单元(CPU)包含一组8个存储32位值的寄存器.用来存储整数数据和指针.它们的名字都是以%e开头,它们都另有特殊的名字.在最初的8086中,寄存器是16位的,每个都有特殊的用途,名字用来反映这些不同的用途.在平坦寻址中对特殊寄存器的需求已经极大降低.<em>大多数情况下</em>,前6个寄存器都可以看成通用寄存器,使用时没有限制(有些指令以固定的寄存器作为源寄存器和/或目标寄存器).另外前3个寄存器(%eax,%ecx,%edx)的保存和恢复惯例不同于(%ebx,%edi,%esi).最后两个寄存器(%ebp,%esp)保存着指向程序栈中重要位置的指针,只有根据栈管理的标准惯例才能修改这两个存储器的值.</p>
-<p><img src="!--￼4--&gt;/images/寄存器.jpg" alt="alter 寄存器"></p>
+<p><img src="/images/寄存器.jpg" alt="alter 寄存器"></p>
 <h3 id="操作数指示符">操作数指示符</h3><p>大多数指令有一个或多个操作数,指示一个操作中要引用的源数据值,以及放置结果的目标位置.</p>
 <ol>
 <li>立即数(immediate),常数值.ATT格式中用$后面跟一个整数.</li>
@@ -414,7 +414,7 @@
 </table>
 <p>(栈向下增长,因此栈顶元素的地址是所有栈中元素地址中最低的.)<br>IA32对传送指令的两个操作数不能都指向存储器位置.</p>
 <p><em>当需要扩展时,由源操作数决定是符号扩展还是零扩展,当源操作数是有符号的进行符号扩展,否则进行零扩展</em></p>
-<p><img src="!--￼5--&gt;/images/堆栈.jpg" alt="alter 堆栈处理情况"></p>
+<p><img src="/images/堆栈.jpg" alt="alter 堆栈处理情况"></p>
 <p>将一个双字值压入栈中,先将栈指针减4,然后将值写到新的栈定地址.</p>
 <p>pushl %ebp的行为等价于下面的两条指令:</p>
 <blockquote>
@@ -764,9 +764,7 @@
 
     <div id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<div class="copyright">
+        <div class="copyright">
   
   &copy; &nbsp; 
   2015
@@ -786,11 +784,6 @@
     NexT.Mist
   </a>
 </div>
-<div class="powered-by">
-</div>
-本站总访问量<span id="wjainng_value_site_pv"></span>次
-本站访客数<span id="wjainng_value_site_uv"></span>人次
-本文总阅读量<span id="wjainng_value_page_pv"></span>次
 
 
       </div>
