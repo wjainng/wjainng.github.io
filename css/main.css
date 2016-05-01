@@ -1135,7 +1135,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #22ff1f;
+  background: #b95eff;
 }
 .sidebar-nav {
   margin: 0;
@@ -2219,4 +2219,23 @@ ul li {
   max-width: 100%;
   width: auto;
   margin: 0;
+}
+.sysout {
+  font-size: 12px;
+}
+blockquote {
+  padding: 1px 20px 1px 20px;
+  font-style: italic;
+  background: #ccc;
+  background: rgba(0,0,0,0.06);
+  color: #222;
+  font-size: 14px;
+}
+ol {
+  padding-left: 20px;
+}
+body {
+  font: 1em/1.5 "Droid Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #555;
+  font-weight: 300;
 }
