@@ -1,51 +1,121 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
+
+
+
   
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
-
-
-    <meta name="description" content="欢迎来到WJAINNG" />
-
-
-
-  <meta name="keywords" content="Hexo,next" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="学而不思则罔，思而不学则殆">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WJAINNG">
+<meta property="og:url" content="http://www.wjainng.com/page/2/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="学而不思则罔，思而不学则殆">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WJAINNG">
+<meta name="twitter:description" content="学而不思则罔，思而不学则殆">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    analytics: {
-      google: ''
-    },
-    sidebar: 'hide'
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
 
+  <title> WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
-  <script type="text/javascript">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -57,37 +127,34 @@
 
 
 
-  <title> WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
 
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
 
-  <div class="container one-column 
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
    page-home 
-">
+ ">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">WJAINNG</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -97,49 +164,52 @@
   </button>
 </div>
 
-<div class="site-nav">
+<nav class="site-nav">
   
 
   
-    <ul id="menu" class="menu menu-left">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
-          <a href="/">
-            <i class="menu-item-icon icon-home"></i> <br />
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories">
-            <i class="menu-item-icon icon-categories"></i> <br />
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
-            <i class="menu-item-icon icon-archives"></i> <br />
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
             归档
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags">
-            <i class="menu-item-icon icon-tags"></i> <br />
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
             标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
           </a>
         </li>
       
@@ -149,10 +219,10 @@
   
     <div class="site-search">
       
-  
-<form class="site-search-form">
+  <form class="site-search-form">
   <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
 </form>
+
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
     (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -162,68 +232,328 @@
   _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
 </script>
 
-<div class="site-search-toggle"></div>
+
+
     </div>
   
-</div>
+</nav>
 
+ </div>
+    </header>
 
-      </div>
-    </div>
-
-    <div id="main" class="main">
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
-  <div id="posts" class="posts-expand">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/12/MAC技巧/">
-                MAC技巧
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-09-12
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/12/MAC技巧/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/MAC技巧/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/14/名言名句/" itemprop="url">
+                  名言名句
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-14T21:51:02+08:00" content="2015-12-14">
+              2015-12-14
+            </time>
           </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/14/名言名句/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/14/名言名句/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>光有认识是不够的，必须应用；光有愿望是不够的，必须行动。<sub>——歌德</sub></p>
+<p>我们并非按其本来面目看待事物，而是按自己的观点看待事物。<sub>——阿奈.尼恩</sub></p>
+<p>子非鱼,安知鱼之乐? <sub>——惠子</sub></p>
+
           
         
-      </div>
+      
+    </div>
+    
+    <div>
+      
     </div>
 
-    <div class="post-body">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/08/1-Inside-Java-Pro-Java/" itemprop="url">
+                  1.Inside Java(Pro Java)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-08T15:38:27+08:00" content="2015-11-08">
+              2015-11-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/08/1-Inside-Java-Pro-Java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/08/1-Inside-Java-Pro-Java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <h2 id="截图">截图</h2><ol>
+          
+            <h2 id="JAVA_架构">JAVA 架构</h2><p>java架构由下面四部分组成:</p>
+<ul>
+<li>java 编程语言</li>
+<li>java class 文件格式</li>
+<li>java 编程接口</li>
+<li>java 虚拟机</li>
+</ul>
+<h2 id="Java虚拟机的运行时数据区">Java虚拟机的运行时数据区</h2><p>虽然java虚拟机的实现各不一样，但是每个Java虚拟机必须支持下面的运行时组件.</p>
+<ul>
+<li>Method area(方法区)</li>
+<li>Heap(堆)</li>
+<li>Stack(栈)</li>
+<li>Registers(寄存器)</li>
+<li>Constant Pool(常量池)</li>
+</ul>
+<h3 id="Heap">Heap</h3><p>堆是用来动态或者临时分配内存的一个内存空闲区域。为类和数组提供内存。如果堆没有足够的内存分配则会报OutOfMemoryError异常。</p>
+<h3 id="Stack">Stack</h3><p>栈用来保持方法执行的状态。栈帧保存数据和中间结果包括方法执行的环境，方法的本地变量和方法的操作栈。操作栈保存绝大部分字节指令的参数和返回值。执行环境包含指向方法调用的指针。如果执行过程中栈的大小不足则会报StackOverflowError异常。</p>
+<h3 id="Method_Area">Method Area</h3><p>方法区供java虚拟机的所有线程共享。用来存储常量池、方法数据、字段数据、方法和构造函数的字节代码。</p>
+<h3 id="Registers">Registers</h3><p>主要的寄存器为PC寄存器，指向正在执行的java虚拟机指令对应的地址。如果正在执行的为native方法，则PC寄存器的值为undefined.java虚拟机中的其他寄存器包括一个指向当前方法的指针，一个当前方法第一个本地变量的指针，一个指向操作栈顶的指针。</p>
+<h3 id="Runtime_Constant_Pool">Runtime Constant Pool</h3><p>运行时常量池类似于其他语言中的符号表，包含数字字面值和字段常量。每一个运行时常量是从方法区中分配，当JVM加载类或者接口时创建。</p>
+<h2 id="Loading,Linking,Initializing">Loading,Linking,Initializing</h2><p>JVM解释执行java字节码必须执行下面三个步骤。</p>
+<ul>
+<li>加载：当JVM加载类时，必须找到一个表示类或者接口的二进制表示。并且从对应的二进制创建一个Class对象。Class对象封装了类或者接口的运行时状态。</li>
+<li>链接：链接是把加载的类或者接口与JVM运行环境绑定，为执行做准备。</li>
+<li>初始化：当JVM执行类或者接口的初始化方法时执行。</li>
+</ul>
+<h3 id="The_First_Step">The First Step</h3><p>当一个独立的java应用启动时JVM做的第一件事就是创建一个包含main方法的类对应的Class对象。JVM链接并且初始化改类，并调用main方法。</p>
+<h3 id="Loading">Loading</h3><p>加载过程由类加载器进行，类加载器本身是ClassLoader的一个子类。<br>有两种类型的类加载器：第一种由JVM提供称为启动类加载器，第二种为用户自定义加载器。用户自定义加载器为ClassLoader的子类。一个类加载器可以把一部分或者全部功能委托给其他类加载器。真正创建Class对象对应的类加载器为定义类加载器(defining loader)，开始加载类的加载器为初始化类加载器(initiating loader)。</p>
+<p>通过启动类加载器加载：首先检查类加载是否被标记为需要加载的类的初始化类加载器，如果是则Class对象已经存在，加载结束。否则则搜索对应的class文件，如果找到则创建一个对应的Class实例，否则抛出NoClassDefFoundError异常。<br>PS:NoClassDefFoundError和ClassNotFoundException的区别<br>Java支持使用Class.forName动态加载类，如果一个类名被当做参数传人但是在类路径中没有找到则会抛出ClassNotFoundException。ClassLoader.loadClass,ClassLoader.findSystemClass在动态加载类到内存时也会抛出这个异常。<br>要查找的类在编译的时候是存在的，运行时却找不到类的定义，则会导致NoClassDefFoundError。</p>
+<p>通过自定义类加载器加载：与启动类加载器一样，先检查是否已经被标记为对应类的初始化类加载器，如果是则对应的类已经被加载，加载过程结束。否则调用loadClass把字节数组转换成ClassFile结构，然后调用defineClass创建Class实例。loadClass也可以把加载任务委托给其他类加载器。</p>
+<h3 id="Linking">Linking</h3><h4 id="Class文件校验">Class文件校验</h4>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/12/MAC技巧/" itemprop="url">
+                  MAC技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-12T22:55:12+08:00" content="2015-09-12">
+              2015-09-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/12/MAC技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/MAC技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="截图">截图</h2><ol>
 <li>COMMAND + SHIFT + 3：全屏截图，保存到桌面。</li>
 <li>COMMAND + SHIFT + 4: 鼠标选定区域截图，保存到桌面。<br>如果同时按住CTRL，则截图保存在剪切板。</li>
 </ol>
@@ -234,12 +564,22 @@
 <li>按住SHIFT后，将锁定X或者Y轴进行拖动。</li>
 <li>按住OPTION后，将按照区域原先进行放大。</li>
 </ol>
+<h2 id="MYSQL更改字符集">MYSQL更改字符集</h2><p>sudo cp /usr/local/mysql-5.6.26-osx10.8-x86_64/support-files/my-default.cnf /etc/my.cnf<br>然后在my.cnf中修改配置<br>sudo vim /etc/my.cnf</p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -248,58 +588,84 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/12/用图表说话笔记/">
-                用图表说话笔记
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-09-12
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/12/用图表说话笔记/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/用图表说话笔记/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/12/用图表说话笔记/" itemprop="url">
+                  用图表说话笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-12T22:19:33+08:00" content="2015-09-12">
+              2015-09-12
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/12/用图表说话笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/用图表说话笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <h1 id="选择图表">选择图表</h1><p>总的来说一共有五种基本的图形表示。</p>
+          
+            <h1 id="选择图表">选择图表</h1><p>总的来说一共有五种基本的图形表示。</p>
 <p><img src="/images/让图表说话1.png" alt="图表类型"></p>
 <p><strong>把数据变成图表的步骤：</strong></p>
 <ol>
@@ -390,11 +756,20 @@
 </ol>
 <h1 id="使用图表">使用图表</h1><p>73</p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -403,58 +778,84 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/12/麦肯锡方法笔记/">
-                麦肯锡方法笔记
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-09-12
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/12/麦肯锡方法笔记/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/麦肯锡方法笔记/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/12/麦肯锡方法笔记/" itemprop="url">
+                  麦肯锡方法笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-12T16:05:13+08:00" content="2015-09-12">
+              2015-09-12
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/12/麦肯锡方法笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/12/麦肯锡方法笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <h1 id=""> </h1><h2 id="-1"> </h2><h3 id="访谈成功的七个秘诀">访谈成功的七个秘诀</h3><ol>
+          
+            <h1 id=""> </h1><h2 id="-1"> </h2><h3 id="访谈成功的七个秘诀">访谈成功的七个秘诀</h3><ol>
 <li>请被访者的上司安排会面。（通过上司告诉被访者的重要性，就不太可能误导和敷衍你）</li>
 <li>两人一组进行访谈。（可以轮流提问和记笔记，避免忙碌而提错问题或者忽略一些线索）</li>
 <li>倾听，不要引导。（大多数情况下你需要尽可能多的信息，而不是是或者否的答案，少说多听，保证访谈内容没有偏离主题就行）</li>
@@ -504,11 +905,20 @@
 <h3 id="获得整个公司的支持">获得整个公司的支持</h3><p>如果希望你的解决方案对客户有长远的影响，就要获得公司各个层面的支持。</p>
 <h3 id="实施要严谨">实施要严谨</h3><p>改变现状需要做很多工作，需要严谨和周密，确保每个人都各司其职，完成工作。<br>说清楚需要做哪些事情，什么时间做，明确和细化到傻瓜都能看懂的程度。</p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -517,64 +927,99 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/09/大脑开窍笔记/">
-                大脑开窍笔记
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-08-09
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/08/09/大脑开窍笔记/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/09/大脑开窍笔记/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/09/大脑开窍笔记/" itemprop="url">
+                  大脑开窍笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-09T19:02:31+08:00" content="2015-08-09">
+              2015-08-09
+            </time>
           </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/09/大脑开窍笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/09/大脑开窍笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="你的大脑爱撒谎">你的大脑爱撒谎</h1><p>大脑认为有些信息不重要而将其忘却，因此经常会犯下忽略重要事实的过错。</p>
+
           
         
-      </div>
+      
     </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="你的大脑爱撒谎">你的大脑爱撒谎</h1><p>大脑认为有些信息不重要而将其忘却，因此经常会犯下忽略重要事实的过错。</p>
-
-        
+    
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -583,62 +1028,95 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/08/问题解决力笔记/">
-                问题解决力笔记
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-08-08
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/逻辑思考/">逻辑思考</a>
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/08/问题解决力笔记/" itemprop="url">
+                  问题解决力笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-08T20:44:22+08:00" content="2015-08-08">
+              2015-08-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/逻辑思考/" itemprop="url" rel="index">
+                    <span itemprop="name">逻辑思考</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
-
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/08/问题解决力笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/08/问题解决力笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/08/08/问题解决力笔记/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/08/问题解决力笔记/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
@@ -651,11 +1129,19 @@
               阅读全文 &raquo;
             </a>
           </div>
-          
+        
+      
+    </div>
+    
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -664,58 +1150,84 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/01/思考的技术读后感/">
-                思考的技术读后感
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-08-01
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/08/01/思考的技术读后感/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/01/思考的技术读后感/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/01/思考的技术读后感/" itemprop="url">
+                  思考的技术读后感
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-01T20:37:19+08:00" content="2015-08-01">
+              2015-08-01
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/01/思考的技术读后感/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/01/思考的技术读后感/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <h2 id="逻辑打动人心">逻辑打动人心</h2><p>一开始就提出整体结论，用简洁的语言，做简洁的分析，每一页做一个结论，然后应用所累积的结论导出自己认对错不了的整体结论</p>
+          
+            <h2 id="逻辑打动人心">逻辑打动人心</h2><p>一开始就提出整体结论，用简洁的语言，做简洁的分析，每一页做一个结论，然后应用所累积的结论导出自己认对错不了的整体结论</p>
 <p>先报告所做的事前作业，搜集了什么样的数据，做了什么分析，进行过几次访谈，跑过哪些地方，以什么地方谈过哪些话，这样可以消除一些人的疑虑。以事实为依据说明自己是下过功夫的，避免不必要的怀疑。</p>
 <p>要按照对方能理解的顺序而不是自己想说的顺序进行，换位思考。</p>
 <p>不能把发现的问题倒过来当做是给客户的建议，例如商品没有竞争力，所以要增强商品的竞争力。而是要给出怎样才能增强商品竞争力的能执行的有效方案。</p>
@@ -731,11 +1243,20 @@
 <p>U型管现象和J型管现象，会产生这些现象，是因为部门领导者及不同部门的人，未跨部门进行沟通，也就不会为了<br>寻求共识而进行调查。甚至问题才发生就受到阻扰不得见光，连解决问题的入口处都没能到达。</p>
 <h2 id="谁都有能力预测未来">谁都有能力预测未来</h2><h3 id="没思考所以被广告骗">没思考所以被广告骗</h3><p>预知性是通过理论性思考而产生。<br>该倒闭的银行就该让它倒闭。</p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -744,74 +1265,117 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/07/04/Spark-Streaming/">
-                Spark Streaming
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-07-04
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/大数据/">大数据</a>
+            
+              
+                
+                <a class="post-title-link" href="/2015/07/04/Spark-Streaming/" itemprop="url">
+                  Spark Streaming
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-04T17:56:33+08:00" content="2015-07-04">
+              2015-07-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/04/Spark-Streaming/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/04/Spark-Streaming/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/04/Spark-Streaming/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/04/Spark-Streaming/"></span>
-            </a>
-          </span>
+            
           
         
-      </div>
+      
+    </div>
+    
+    <div>
+      
     </div>
 
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          
-        
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <footer class="post-footer">
       
 
       
@@ -820,51 +1384,76 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/08/JVMS-加载、链接与初始化/">
-                加载、链接和初始化
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-05-08
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/08/JVMS-加载、链接与初始化/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/08/JVMS-加载、链接与初始化/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/08/JVMS-加载、链接与初始化/" itemprop="url">
+                  加载、链接和初始化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-08T00:00:00+08:00" content="2015-05-08">
+              2015-05-08
+            </time>
           </span>
-          
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/08/JVMS-加载、链接与初始化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/08/JVMS-加载、链接与初始化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
@@ -877,11 +1466,19 @@
               阅读全文 &raquo;
             </a>
           </div>
-          
+        
+      
+    </div>
+    
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -890,166 +1487,29 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/01/27/深入理解计算机系统-笔记三/">
-                深入理解计算机系统-笔记三
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-01-27
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/01/27/深入理解计算机系统-笔记三/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/27/深入理解计算机系统-笔记三/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          程序的机器级表示
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/01/27/深入理解计算机系统-笔记三/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/01/17/深入理解计算机系统-笔记二/">
-                深入理解计算机系统-笔记二
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-01-17
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/01/17/深入理解计算机系统-笔记二/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/17/深入理解计算机系统-笔记二/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          信息的表示和处理
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/01/17/深入理解计算机系统-笔记二/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-  </div>
+  </section>
 
   
-  <div class="pagination">
-    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
-  </div>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
+
+
+          </div>
+          
+
+
+          
 
         </div>
-
         
-      </div>
-
-
-      
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -1059,40 +1519,48 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="WJ" />
-          <p class="site-author-name">WJ</p>
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
         </div>
-        <p class="site-description motion-element">欢迎来到WJAINNG</p>
-        <div class="site-state motion-element">
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
-        </div>
+        </nav>
 
         
 
@@ -1103,30 +1571,31 @@
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
         
-      </div>
+        
+
+      </section>
 
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+        
+      </div>
+    </main>
 
-    <div id="footer" class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
-  &copy; &nbsp; 
-  2016
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author">WJ</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 </div>
 
 <div class="powered-by">
@@ -1140,69 +1609,77 @@
   </a>
 </div>
 
+        
 
+        
       </div>
-    </div>
+    </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
   
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
-
-
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
-  </script>
 
-  
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
   
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
   
 
   
@@ -1214,34 +1691,28 @@
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  
+    
   
 
 
+
+
+
   
+  
+  
+
+  
+
   
 
 </body>

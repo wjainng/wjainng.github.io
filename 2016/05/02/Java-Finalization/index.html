@@ -1,0 +1,644 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="对java finalize的理解，摘选自http://www.devx.com/Java/Article/30192">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Finalization">
+<meta property="og:url" content="http://www.wjainng.com/2016/05/02/Java-Finalization/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="对java finalize的理解，摘选自http://www.devx.com/Java/Article/30192">
+<meta property="og:updated_time" content="2016-05-02T16:09:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Finalization">
+<meta name="twitter:description" content="对java finalize的理解，摘选自http://www.devx.com/Java/Article/30192">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Java Finalization | WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?wjainng";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WJAINNG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java Finalization
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-02T19:34:18+08:00" content="2016-05-02">
+              2016-05-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/02/Java-Finalization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/02/Java-Finalization/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>finalization是java语言提供的一种对资源进行清理的途径，当垃圾回收器发现对象不可达时会调用其finalize方法。一般用在对本地资源(native resources)的清理。</p>
+<h2 id="finalizable对象的生命周期">finalizable对象的生命周期</h2><p>finalizable对象指的是具有非平凡(non-trivial)的finalize方法的对象。个人理解就是那些没有覆写Object对象的finalize方法的对象(包括直接或者间接覆写)。下面对象Image1覆写了Object的finalize方法，是finalizable的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Image1</span> </span>&#123; </span><br><span class="line">    <span class="comment">// pointer to the native image data private </span></span><br><span class="line">    <span class="keyword">int</span> nativeImg; </span><br><span class="line">    <span class="keyword">private</span> Point pos; </span><br><span class="line">    <span class="keyword">private</span> Dimension dim; </span><br><span class="line">    <span class="comment">// it disposes of the native image; </span></span><br><span class="line">    <span class="comment">// successive calls to it will be ignored </span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">disposeNative</span><span class="params">()</span></span>; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        disposeNative(); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        dispose(); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">private</span> Image1 randomImg; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>当对象被分配时，JVM标识该对象是否为finalizable的。</li>
+<li>当垃圾回收器发现对象时不可达时，发现对象时finalizable的，则把对象加入JVM的finalization队列中，同时通过该对象可达的对象都需要保留不能进行回收。因为该finalizable对象可能会重新可达。</li>
+<li>稍后，JVM的finalizer线程将对象从队列中取出，执行其finalize方法，并且标识对象的finalize方法已经被执行。这时对象被看做为已经finalized了。</li>
+<li>当垃圾回收器再次发现对象为不可达时，会回收其内存，已经所有只有通过该对象可达的对象。 </li>
+</ol>
+<blockquote>
+<p>在finalizable对象回收前至少得经过两次GC，并且在此过程中需要保留只有通过该对象可达的其他对象。<br>并且JVM不保证所有finalizable对象的finalize方法都会被执行。(程序在gc前退出，有对象的finalize方法实现有问题一直占用finalize线程)</p>
+</blockquote>
+<h2 id="继承时的finalize">继承时的finalize</h2><p>如果Parent是finalizable的，则其子类Child因为继承了父类的finalize方法，因此Child也是finalizable的，如果Child中还有其他占内存的属性，会导致内存得不到及时释放。例如下面的RGBImage1因为Image1覆写了finalize方法，导致rgdData内容得不到及时释放，finalize在继承关系中隐藏得很深。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RGBImage1</span> <span class="keyword">extends</span> <span class="title">Image1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span> rgbData[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决RGBImage1遇到的问题的方法之一是舍弃继承使用组合，例如下面的RGBImage2<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RGBImage2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span> rgbData[];</span><br><span class="line">    <span class="keyword">private</span> Image1 img;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        img.dispose();<span class="comment">//把方法委托给img</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>RGBImage2中使用了一个Image1对象，而非继承Image1，RGBImage2不是finalizable的，因此RGBImage2会在第一次GC时就可以回收。</p>
+<p>或者可以通过手动调用非finalize方法实现，例如下面的RGBImage3<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RGBImage3</span> <span class="keyword">extends</span> <span class="title">Image1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span> rgbData[];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.dispose();</span><br><span class="line">        <span class="keyword">this</span>.rgbData = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>RGBImage3通过在dispose方法中把rgbData赋值为null，加快垃圾回收，此时必须在RGBImage3用完时需要显示的调用dispose方法，如果依赖finalize方法调用dispose方法则一样的存在内存延迟释放。</p>
+</blockquote>
+<p><em>同样的内部类隐式的具有一个指向其外部类对象，如果内部类是finalizable的则会导致外部类的延迟回收</em></p>
+<h2 id="finalization的替代">finalization的替代</h2><p>JVM同等的对待finalization队列中的对象，JVM也不保证finalizable对象finalize方法的执行顺序。避免不确定性，可以使用weakreference加reference queue的方式实现finalize同样的效果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">NativeImage3</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">Image3</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> nativeImg;</span><br><span class="line"></span><br><span class="line">    <span class="function">privat <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">disposeNative</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        disposeNative();</span><br><span class="line">        refList.remove(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">private</span> ReferenceQueue&lt;Image3&gt; refQueue;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">private</span> List&lt;NativeImage3&gt; refList;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> ReferenceQueue&lt;Image3&gt; <span class="title">referenceQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> refQueue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    NativeImage3(Image3 img) &#123;</span><br><span class="line">        <span class="keyword">super</span>(img, refQueue);</span><br><span class="line">        refList.add(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Image3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> NativeImage3 nativeImg;</span><br><span class="line">    <span class="keyword">private</span> Point pos;</span><br><span class="line">    <span class="keyword">private</span> Dimension dim;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        nativeImg.dispose();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当NativeImage3指向的Image3的可达性变成弱可达时，会把NativeImage3放入reference queue中，通过从reference queue中获取NativeImage3并且调用其dispose方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ReferenceQueue&lt;Image3&gt; refQueue = NativeImage3.referenceQueue(); </span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123; </span><br><span class="line">    NativeImage3 nativeImg = (NativeImage3) refQueue.remove(); </span><br><span class="line">    nativeImg.dispose();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不能保证资源一定会被释放，当内存很充足时，还来不及回收，因此NativeImage3也不会被放入reference queue中。</p>
+</blockquote>
+<p>参考列表：<br><a href="http://www.devx.com/Java/Article/30192/0/page/1" target="_blank" rel="external">How to Handle Java Finalization’s Memory-Retention Issues</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/28/Java引用类型/" rel="next" title="Java引用类型">
+                <i class="fa fa-chevron-left"></i> Java引用类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/03/GC调优一-简介/" rel="prev" title="GC调优一[简介]">
+                GC调优一[简介] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/02/Java-Finalization/"
+           data-title="Java Finalization" data-url="http://www.wjainng.com/2016/05/02/Java-Finalization/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#finalizable对象的生命周期"><span class="nav-number">1.</span> <span class="nav-text">finalizable对象的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承时的finalize"><span class="nav-number">2.</span> <span class="nav-text">继承时的finalize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#finalization的替代"><span class="nav-number">3.</span> <span class="nav-text">finalization的替代</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wjainng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

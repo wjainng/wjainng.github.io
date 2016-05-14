@@ -1,51 +1,152 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
+
+
+
   
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
-
-
-    <meta name="description" content="欢迎来到WJAINNG" />
-
-
-
-  <meta name="keywords" content="Hexo,next" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="让领域模型发挥作用前提：
+大多数软件项目中，主要焦点应该是领域与领域逻辑。
+复杂的领域设计应该基于模型。
+
+开发实践：
+迭代开发。
+开发人员与领域专家具有密切的关系。
+
+模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）
+模型在领域驱动设计中的作用
+模型和设计的核心互相影响。模型与实现之间的紧密联系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="领域驱动设计">
+<meta property="og:url" content="http://www.wjainng.com/2015/12/26/领域驱动设计/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="让领域模型发挥作用前提：
+大多数软件项目中，主要焦点应该是领域与领域逻辑。
+复杂的领域设计应该基于模型。
+
+开发实践：
+迭代开发。
+开发人员与领域专家具有密切的关系。
+
+模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）
+模型在领域驱动设计中的作用
+模型和设计的核心互相影响。模型与实现之间的紧密联系">
+<meta property="og:updated_time" content="2016-01-10T14:45:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="领域驱动设计">
+<meta name="twitter:description" content="让领域模型发挥作用前提：
+大多数软件项目中，主要焦点应该是领域与领域逻辑。
+复杂的领域设计应该基于模型。
+
+开发实践：
+迭代开发。
+开发人员与领域专家具有密切的关系。
+
+模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）
+模型在领域驱动设计中的作用
+模型和设计的核心互相影响。模型与实现之间的紧密联系">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    analytics: {
-      google: ''
-    },
-    sidebar: 'hide'
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
 
+  <title> 领域驱动设计 | WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
-  <script type="text/javascript">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -57,35 +158,32 @@
 
 
 
-  <title> 领域驱动设计 // WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
 
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
 
-  <div class="container one-column page-post-detail">
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">WJAINNG</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -95,49 +193,52 @@
   </button>
 </div>
 
-<div class="site-nav">
+<nav class="site-nav">
   
 
   
-    <ul id="menu" class="menu menu-left">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
-          <a href="/">
-            <i class="menu-item-icon icon-home"></i> <br />
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories">
-            <i class="menu-item-icon icon-categories"></i> <br />
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
-            <i class="menu-item-icon icon-archives"></i> <br />
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
             归档
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags">
-            <i class="menu-item-icon icon-tags"></i> <br />
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
             标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
           </a>
         </li>
       
@@ -147,10 +248,10 @@
   
     <div class="site-search">
       
-  
-<form class="site-search-form">
+  <form class="site-search-form">
   <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
 </form>
+
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
     (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -160,70 +261,103 @@
   _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
 </script>
 
-<div class="site-search-toggle"></div>
+
+
     </div>
   
-</div>
+</nav>
 
+ </div>
+    </header>
 
-      </div>
-    </div>
-
-    <div id="main" class="main">
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
     
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              领域驱动设计
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-12-26
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/DDD/">DDD</a>
+            
+              
+                领域驱动设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-26T18:11:08+08:00" content="2015-12-26">
+              2015-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DDD/" itemprop="url" rel="index">
+                    <span itemprop="name">DDD</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
-
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/26/领域驱动设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/领域驱动设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/12/26/领域驱动设计/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/领域驱动设计/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
@@ -413,21 +547,37 @@
 
       
     </div>
+    
+    <div>
+      
+        
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/01/读书清单/">读书清单</a>
+              <a href="/2015/12/20/Agile-Java/" rel="next" title="Agile Java">
+                <i class="fa fa-chevron-left"></i> Agile Java
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/20/Agile-Java/">Agile Java</a>
+              <a href="/2016/01/01/读书清单/" rel="prev" title="读书清单">
+                读书清单 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -435,34 +585,34 @@
 
       
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
 
     <div class="post-spread">
       
     </div>
+  </div>
 
-    
-      <div class="comments" id="comments">
-        
-          <div class="ds-thread" data-thread-key="2015/12/26/领域驱动设计/"
-               data-title="领域驱动设计" data-url="http://www.wjainng.com/2015/12/26/领域驱动设计/">
+
           </div>
-        
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/26/领域驱动设计/"
+           data-title="领域驱动设计" data-url="http://www.wjainng.com/2015/12/26/领域驱动设计/">
       </div>
     
   </div>
 
 
         </div>
-
         
-      </div>
-
-
-      
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -472,12 +622,14 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
+
+      
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -486,35 +638,41 @@
         </ul>
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="WJ" />
-          <p class="site-author-name">WJ</p>
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
         </div>
-        <p class="site-description motion-element">欢迎来到WJAINNG</p>
-        <div class="site-state motion-element">
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
-        </div>
+        </nav>
 
         
 
@@ -525,41 +683,42 @@
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
         
-      </div>
+        
+
+      </section>
 
       
-        <div class="post-toc-wrap sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+            
+              
             
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#让领域模型发挥作用"><span class="nav-number">1.</span> <span class="nav-text">让领域模型发挥作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提："><span class="nav-number">1.1.</span> <span class="nav-text">前提：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发实践："><span class="nav-number">1.2.</span> <span class="nav-text">开发实践：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型在领域驱动设计中的作用"><span class="nav-number">1.3.</span> <span class="nav-text">模型在领域驱动设计中的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件的核心"><span class="nav-number">1.4.</span> <span class="nav-text">软件的核心</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消化知识"><span class="nav-number">2.</span> <span class="nav-text">消化知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有效建模的要素"><span class="nav-number">2.1.</span> <span class="nav-text">有效建模的要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识消化"><span class="nav-number">2.2.</span> <span class="nav-text">知识消化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续学习"><span class="nav-number">2.3.</span> <span class="nav-text">持续学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识丰富的设计"><span class="nav-number">2.4.</span> <span class="nav-text">知识丰富的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深层模型"><span class="nav-number">2.5.</span> <span class="nav-text">深层模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言的交流和使用"><span class="nav-number">3.</span> <span class="nav-text">语言的交流和使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定模型和实现"><span class="nav-number">4.</span> <span class="nav-text">绑定模型和实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式"><span class="nav-number">4.1.</span> <span class="nav-text">模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型驱动设计的构造块"><span class="nav-number">5.</span> <span class="nav-text">模型驱动设计的构造块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分离领域"><span class="nav-number">5.1.</span> <span class="nav-text">分离领域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式:分层架构"><span class="nav-number">5.1.1.</span> <span class="nav-text">模式:分层架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型属于领域层"><span class="nav-number">5.1.2.</span> <span class="nav-text">模型属于领域层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式:智能用户界面"><span class="nav-number">5.1.3.</span> <span class="nav-text">模式:智能用户界面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件中所表示的模型"><span class="nav-number">5.2.</span> <span class="nav-text">软件中所表示的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关联"><span class="nav-number">5.2.1.</span> <span class="nav-text">关联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式:ENTITY(REFERENCE_OBJECT)"><span class="nav-number">5.2.2.</span> <span class="nav-text">模式:ENTITY(REFERENCE OBJECT)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ENTITY建模"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">ENTITY建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计标识操作"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">设计标识操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：VALUE_OBJECT"><span class="nav-number">5.2.3.</span> <span class="nav-text">模式：VALUE OBJECT</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计VALUE_OBJECT"><span class="nav-number">5.2.3.1.</span> <span class="nav-text">设计VALUE OBJECT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计包含VALUE_OBJECT的关联"><span class="nav-number">5.2.3.2.</span> <span class="nav-text">设计包含VALUE OBJECT的关联</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：SERVICE"><span class="nav-number">5.2.4.</span> <span class="nav-text">模式：SERVICE</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SERVICE与孤立的领域层"><span class="nav-number">5.2.4.1.</span> <span class="nav-text">SERVICE与孤立的领域层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：MODULE（PACKAGE)"><span class="nav-number">5.2.5.</span> <span class="nav-text">模式：MODULE（PACKAGE)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#敏捷的MODULE"><span class="nav-number">5.2.5.1.</span> <span class="nav-text">敏捷的MODULE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基础设施驱动的打包存在隐患"><span class="nav-number">5.2.5.2.</span> <span class="nav-text">基础设施驱动的打包存在隐患</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模范式"><span class="nav-number">5.3.</span> <span class="nav-text">建模范式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在混合范式中坚持使用MODEL-DRIVEN_DESIGN"><span class="nav-number">5.3.1.</span> <span class="nav-text">在混合范式中坚持使用MODEL-DRIVEN DESIGN</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#领域对象的生命周期"><span class="nav-number">6.</span> <span class="nav-text">领域对象的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式：AGGREGATE"><span class="nav-number">6.1.</span> <span class="nav-text">模式：AGGREGATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式：FACTORY"><span class="nav-number">6.2.</span> <span class="nav-text">模式：FACTORY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择FACTORY及其应用位置"><span class="nav-number">6.2.1.</span> <span class="nav-text">选择FACTORY及其应用位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有些时候只需要使用构造函数"><span class="nav-number">6.2.2.</span> <span class="nav-text">有些时候只需要使用构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口的设计"><span class="nav-number">6.2.3.</span> <span class="nav-text">接口的设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固定规则的逻辑应放置在哪里"><span class="nav-number">6.2.4.</span> <span class="nav-text">固定规则的逻辑应放置在哪里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ENTITY_FACTORY与VALUE_OBJECT_FACTORY"><span class="nav-number">6.2.5.</span> <span class="nav-text">ENTITY FACTORY与VALUE OBJECT FACTORY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重建已存储的对象"><span class="nav-number">6.2.6.</span> <span class="nav-text">重建已存储的对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式：REPOSITORY"><span class="nav-number">6.3.</span> <span class="nav-text">模式：REPOSITORY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REPOSITORY的查询"><span class="nav-number">6.3.1.</span> <span class="nav-text">REPOSITORY的查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略"><span class="nav-number">6.3.2.</span> <span class="nav-text">客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </div>
+        </section>
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+        
+      </div>
+    </main>
 
-    <div id="footer" class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
-  &copy; &nbsp; 
-  2016
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author">WJ</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 </div>
 
 <div class="powered-by">
@@ -573,208 +732,81 @@
   </a>
 </div>
 
+        
 
+        
       </div>
-    </div>
+    </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
-
-
-
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
-
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var $sidebarInner = $('.sidebar-inner');
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.didShow', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-          var self = this;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      $(indicator).velocity('stop').velocity({
-        opacity: action === 'show' ? 0.4 : 0
-      }, { duration: 100 });
-    }
-
-  });
-</script>
-
-
-  <script type="text/javascript" id="sidebar.nav">
-    $(document).ready(function () {
-      var html = $('html');
-
-      $('.sidebar-nav li').on('click', function () {
-        var item = $(this);
-        var activeTabClassName = 'sidebar-nav-active';
-        var activePanelClassName = 'sidebar-panel-active';
-        if (item.hasClass(activeTabClassName)) {
-          return;
-        }
-
-        var currentTarget = $('.' + activePanelClassName);
-        var target = $('.' + item.data('target'));
-
-        currentTarget.velocity('transition.slideUpOut', 200, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', 200)
-            .addClass(activePanelClassName);
-        });
-
-        item.siblings().removeClass(activeTabClassName);
-        item.addClass(activeTabClassName);
-      });
-
-      $('.post-toc a').on('click', function (e) {
-        e.preventDefault();
-        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        });
-      });
-
-      // Expand sidebar on post detail page by default, when post has a toc.
-      var $tocContent = $('.post-toc-content');
-      if (isDesktop() && CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
-    });
-  </script>
-
-
-
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
-  </script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
   
 
   
@@ -786,34 +818,28 @@
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  
+    
   
 
 
+
+
+
   
+  
+  
+
+  
+
   
 
 </body>

@@ -1,51 +1,121 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
+
+
+
   
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
-
-
-    <meta name="description" content="欢迎来到WJAINNG" />
-
-
-
-  <meta name="keywords" content="Hexo,next" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="学而不思则罔，思而不学则殆">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WJAINNG">
+<meta property="og:url" content="http://www.wjainng.com/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="学而不思则罔，思而不学则殆">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WJAINNG">
+<meta name="twitter:description" content="学而不思则罔，思而不学则殆">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    analytics: {
-      google: ''
-    },
-    sidebar: 'hide'
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
 
+  <title> WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
-  <script type="text/javascript">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -57,37 +127,34 @@
 
 
 
-  <title> WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
 
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
 
-  <div class="container one-column 
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
    page-home 
-">
+ ">
     <div class="headband"></div>
 
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">WJAINNG</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -97,49 +164,52 @@
   </button>
 </div>
 
-<div class="site-nav">
+<nav class="site-nav">
   
 
   
-    <ul id="menu" class="menu menu-left">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
-          <a href="/">
-            <i class="menu-item-icon icon-home"></i> <br />
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
             首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories">
-            <i class="menu-item-icon icon-categories"></i> <br />
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about">
-            <i class="menu-item-icon icon-about"></i> <br />
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
-            <i class="menu-item-icon icon-archives"></i> <br />
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
             归档
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags">
-            <i class="menu-item-icon icon-tags"></i> <br />
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
             标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
           </a>
         </li>
       
@@ -149,10 +219,10 @@
   
     <div class="site-search">
       
-  
-<form class="site-search-form">
+  <form class="site-search-form">
   <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
 </form>
+
 <script type="text/javascript">
   (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
     (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
@@ -162,61 +232,293 @@
   _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
 </script>
 
-<div class="site-search-toggle"></div>
+
+
     </div>
   
-</div>
+</nav>
 
+ </div>
+    </header>
 
-      </div>
-    </div>
-
-    <div id="main" class="main">
+    <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
-  <div id="posts" class="posts-expand">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/04/28/Java引用类型/">
-                Java引用类型
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2016-04-28
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2016/04/28/Java引用类型/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/Java引用类型/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/03/GC调优一-简介/" itemprop="url">
+                  GC调优一[简介]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-03T22:01:46+08:00" content="2016-05-03">
+              2016-05-03
+            </time>
           </span>
+
           
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/03/GC调优一-简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/GC调优一-简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
-      </div>
+          gc简介,摘选自java官方文档
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/03/GC调优一-简介/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
     </div>
 
-    <div class="post-body">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/02/Java-Finalization/" itemprop="url">
+                  Java Finalization
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-02T19:34:18+08:00" content="2016-05-02">
+              2016-05-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/02/Java-Finalization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/02/Java-Finalization/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          对java finalize的理解，摘选自http://www.devx.com/Java/Article/30192
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/02/Java-Finalization/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/28/Java引用类型/" itemprop="url">
+                  Java引用类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-28T23:11:12+08:00" content="2016-04-28">
+              2016-04-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/28/Java引用类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/Java引用类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
@@ -229,11 +531,19 @@
               阅读全文 &raquo;
             </a>
           </div>
-          
+        
+      
+    </div>
+    
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -242,58 +552,84 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/">
-                JVM笔记二[垃圾收集器与内存分配策略]
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2016-04-28
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/" itemprop="url">
+                  JVM笔记二[垃圾收集器与内存分配策略]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-28T22:06:55+08:00" content="2016-04-28">
+              2016-04-28
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <h1 id="垃圾收集器与内存分配策略">垃圾收集器与内存分配策略</h1><h2 id="GC概述">GC概述</h2><p>GC需要完成的3件事情。</p>
+          
+            <h1 id="垃圾收集器与内存分配策略">垃圾收集器与内存分配策略</h1><h2 id="GC概述">GC概述</h2><p>GC需要完成的3件事情。</p>
 <ul>
 <li>哪些内存需要回收？(回收对象,what)</li>
 <li>什么时候回收？(回收时间,when)</li>
@@ -318,11 +654,20 @@
 <li>虚引用。(Phantom Reference)<br>引用强调依次逐渐减弱。<br>参考<a href="/2016/04/28/Java引用类型/">Java 引用类型</a></li>
 </ol>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -331,58 +676,84 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/04/25/JVM笔记一-自动内存管理/">
-                JVM笔记一[自动内存管理]
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2016-04-25
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2016/04/25/JVM笔记一-自动内存管理/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/JVM笔记一-自动内存管理/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/25/JVM笔记一-自动内存管理/" itemprop="url">
+                  JVM笔记一[自动内存管理]
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-25T22:26:42+08:00" content="2016-04-25">
+              2016-04-25
+            </time>
           </span>
+
           
-        
-      </div>
-    </div>
 
-    <div class="post-body">
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/25/JVM笔记一-自动内存管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/JVM笔记一-自动内存管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <h1 id="Java内存区域与内存异常">Java内存区域与内存异常</h1><h2 id="运行时数据区">运行时数据区</h2><ol>
+          
+            <h1 id="Java内存区域与内存异常">Java内存区域与内存异常</h1><h2 id="运行时数据区">运行时数据区</h2><ol>
 <li>方法区(Method Area)</li>
 <li>堆(Heap)</li>
 <li>虚拟机栈(VM Stack)</li>
@@ -411,12 +782,22 @@
 <blockquote>
 <p>因对象访问在java中非常频繁，HotSport中使用直接访问方式。</p>
 </blockquote>
+<p><a href="http://www.oracle.com/technetwork/java/whitepaper-135217.html#memory" target="_blank" rel="external">jvm架构白皮书</a></p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -425,63 +806,98 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/04/05/test/">
-                test
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2016-04-05
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2016/04/05/test/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/05/test/"></span>
-            </a>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/05/test/" itemprop="url">
+                  test
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-05T23:20:47+08:00" content="2016-04-05">
+              2016-04-05
+            </time>
           </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/05/test/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/05/test/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
           
         
-      </div>
+      
     </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          
-        
+    
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -490,69 +906,103 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/01/读书清单/">
-                读书清单
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2016-01-01
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/计划/">计划</a>
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/01/读书清单/" itemprop="url">
+                  读书清单
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-01T18:37:18+08:00" content="2016-01-01">
+              2016-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/计划/" itemprop="url" rel="index">
+                    <span itemprop="name">计划</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/01/读书清单/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/01/读书清单/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2016/01/01/读书清单/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/01/读书清单/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>2016年读书列表</p>
+            <p>2016年读书列表</p>
 <ul>
 <li><p>时间管理等</p>
 <ul>
@@ -635,11 +1085,20 @@
 </li>
 </ul>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -648,69 +1107,103 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/26/领域驱动设计/">
-                领域驱动设计
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-12-26
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/DDD/">DDD</a>
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/26/领域驱动设计/" itemprop="url">
+                  领域驱动设计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-26T18:11:08+08:00" content="2015-12-26">
+              2015-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DDD/" itemprop="url" rel="index">
+                    <span itemprop="name">DDD</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/26/领域驱动设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/领域驱动设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/12/26/领域驱动设计/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/领域驱动设计/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="让领域模型发挥作用">让领域模型发挥作用</h2><h3 id="前提：">前提：</h3><ol>
+            <h2 id="让领域模型发挥作用">让领域模型发挥作用</h2><h3 id="前提：">前提：</h3><ol>
 <li>大多数软件项目中，主要焦点应该是领域与领域逻辑。</li>
 <li>复杂的领域设计应该基于模型。</li>
 </ol>
@@ -892,11 +1385,20 @@
 <h4 id="REPOSITORY的查询">REPOSITORY的查询</h4><p>可以构建硬编码式的查询，因为即使它们不做这些事，一些客户也必须要做。在一些需要执行大量查询的项目上，可以构建一个支持更灵活的查询的REPOSITORY框架，例如基于SPECIFICATION的查询特别适合作为一个框架来使用。</p>
 <h4 id="客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略">客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略</h4><p>持久化技术的封装可以使得客户变得十分简单，并且使客户与REPOSITORY的实现之间完全解耦，但像一般的封装一样，开发人员必须知道在封装背后的内涵。在使用REPOSITORY时，不同的使用方式或工作方式可能会对性能产生极大的影响。</p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -905,75 +1407,118 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/20/Agile-Java/">
-                Agile Java
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-12-20
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/JAVA/">JAVA</a>
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/20/Agile-Java/" itemprop="url">
+                  Agile Java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-20T10:18:55+08:00" content="2015-12-20">
+              2015-12-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/20/Agile-Java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/Agile-Java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/12/20/Agile-Java/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/Agile-Java/"></span>
-            </a>
-          </span>
+            <p>设计系统，通过扩展来拥抱变化，而不是通过修改来适应变化。</p>
+
           
         
-      </div>
+      
     </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>设计系统，通过扩展来拥抱变化，而不是通过修改来适应变化。</p>
-
-        
+    
+    <div>
       
     </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -982,69 +1527,103 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
       
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  
+  
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/19/生命中最重要的/">
-                生命中最重要的(读后感)
-              </a>
-            
-          
-        </h1>
-      
+  
+  
+  
 
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-12-19
-        </span>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
 
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分类于
+        
+          <h1 class="post-title" itemprop="name headline">
             
-              <a href="/categories/价值观/">价值观</a>
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/19/生命中最重要的/" itemprop="url">
+                  生命中最重要的(读后感)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-19T16:24:00+08:00" content="2015-12-19">
+              2015-12-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/价值观/" itemprop="url" rel="index">
+                    <span itemprop="name">价值观</span>
+                  </a>
+                </span>
+
+                
+                
 
               
-              
+            </span>
+          
 
+          
             
-          </span>
-        
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/19/生命中最重要的/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/19/生命中最重要的/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/12/19/生命中最重要的/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/19/生命中最重要的/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>通过个人在不同环境中充当不同的角色，不同的角色关注点不同，不同角色在不同的阶段的重要性也不一样。通过角色找到个人的核心价值观，根据核心价值观写下个人的使命宣言，在日常生活中不断朝着这个目标前进，最终实现个人的使命。（角色-价值观-使命）</p>
+            <p>通过个人在不同环境中充当不同的角色，不同的角色关注点不同，不同角色在不同的阶段的重要性也不一样。通过角色找到个人的核心价值观，根据核心价值观写下个人的使命宣言，在日常生活中不断朝着这个目标前进，最终实现个人的使命。（角色-价值观-使命）</p>
 <p>在有了个人使命后，需要制定计划去执行，一定要把自己的计划写下来，并且在过程中不断回顾，自己的行为是否按计划进行，是否满足个人的核心价值观。同时计划也要有层次，通过实现多个小目标达到一个大目标的实现。计划是有截止时间的，如果没有计划则目标一直留在“总有一天”的梦想中。通过计划鞭策自己前进。(发现-计划-行动)</p>
 <h2 id="角色">角色</h2><p>人不可避免的会充当一定的角色，例如家庭中为人子女或者为人父母，工作中同事等。<br><em>不管你是谁，不管你想成为什么样的人，<strong>做好</strong>你自己的事情。</em></p>
 <h2 id="主导价值观">主导价值观</h2><p>主导价值观是我们的真正自我的核心，是我们生活中<strong>最重要</strong>的、具有<strong>最高优先级</strong>的事情。</p>
@@ -1106,11 +1685,20 @@
 </ol>
 <p><strong>希望自己在后续的行为中遵循这些价值观，并不断进步。</strong></p>
 
+          
         
       
     </div>
+    
+    <div>
+      
+    </div>
 
-    <div class="post-footer">
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
       
@@ -1119,189 +1707,29 @@
       
         <div class="post-eof"></div>
       
-    </div>
-  </div>
+    </footer>
+  </article>
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/14/名言名句/">
-                名言名句
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-12-14
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/12/14/名言名句/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/14/名言名句/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>光有认识是不够的，必须应用；光有愿望是不够的，必须行动。<sub>——歌德</sub></p>
-<p>我们并非按其本来面目看待事物，而是按自己的观点看待事物。<sub>——阿奈.尼恩</sub></p>
-<p>子非鱼,安知鱼之乐? <sub>——惠子</sub></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/11/08/1-Inside-Java-Pro-Java/">
-                1.Inside Java(Pro Java)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于 2015-11-08
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/11/08/1-Inside-Java-Pro-Java/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/08/1-Inside-Java-Pro-Java/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="JAVA_架构">JAVA 架构</h2><p>java架构由下面四部分组成:</p>
-<ul>
-<li>java 编程语言</li>
-<li>java class 文件格式</li>
-<li>java 编程接口</li>
-<li>java 虚拟机</li>
-</ul>
-<h2 id="Java虚拟机的运行时数据区">Java虚拟机的运行时数据区</h2><p>虽然java虚拟机的实现各不一样，但是每个Java虚拟机必须支持下面的运行时组件.</p>
-<ul>
-<li>Method area(方法区)</li>
-<li>Heap(堆)</li>
-<li>Stack(栈)</li>
-<li>Registers(寄存器)</li>
-<li>Constant Pool(常量池)</li>
-</ul>
-<h3 id="Heap">Heap</h3><p>堆是用来动态或者临时分配内存的一个内存空闲区域。为类和数组提供内存。如果堆没有足够的内存分配则会报OutOfMemoryError异常。</p>
-<h3 id="Stack">Stack</h3><p>栈用来保持方法执行的状态。栈帧保存数据和中间结果包括方法执行的环境，方法的本地变量和方法的操作栈。操作栈保存绝大部分字节指令的参数和返回值。执行环境包含指向方法调用的指针。如果执行过程中栈的大小不足则会报StackOverflowError异常。</p>
-<h3 id="Method_Area">Method Area</h3><p>方法区供java虚拟机的所有线程共享。用来存储常量池、方法数据、字段数据、方法和构造函数的字节代码。</p>
-<h3 id="Registers">Registers</h3><p>主要的寄存器为PC寄存器，指向正在执行的java虚拟机指令对应的地址。如果正在执行的为native方法，则PC寄存器的值为undefined.java虚拟机中的其他寄存器包括一个指向当前方法的指针，一个当前方法第一个本地变量的指针，一个指向操作栈顶的指针。</p>
-<h3 id="Runtime_Constant_Pool">Runtime Constant Pool</h3><p>运行时常量池类似于其他语言中的符号表，包含数字字面值和字段常量。每一个运行时常量是从方法区中分配，当JVM加载类或者接口时创建。</p>
-<h2 id="Loading,Linking,Initializing">Loading,Linking,Initializing</h2><p>JVM解释执行java字节码必须执行下面三个步骤。</p>
-<ul>
-<li>加载：当JVM加载类时，必须找到一个表示类或者接口的二进制表示。并且从对应的二进制创建一个Class对象。Class对象封装了类或者接口的运行时状态。</li>
-<li>链接：链接是把加载的类或者接口与JVM运行环境绑定，为执行做准备。</li>
-<li>初始化：当JVM执行类或者接口的初始化方法时执行。</li>
-</ul>
-<h3 id="The_First_Step">The First Step</h3><p>当一个独立的java应用启动时JVM做的第一件事就是创建一个包含main方法的类对应的Class对象。JVM链接并且初始化改类，并调用main方法。</p>
-<h3 id="Loading">Loading</h3><p>加载过程由类加载器进行，类加载器本身是ClassLoader的一个子类。<br>有两种类型的类加载器：第一种由JVM提供称为启动类加载器，第二种为用户自定义加载器。用户自定义加载器为ClassLoader的子类。一个类加载器可以把一部分或者全部功能委托给其他类加载器。真正创建Class对象对应的类加载器为定义类加载器(defining loader)，开始加载类的加载器为初始化类加载器(initiating loader)。</p>
-<p>通过启动类加载器加载：首先检查类加载是否被标记为需要加载的类的初始化类加载器，如果是则Class对象已经存在，加载结束。否则则搜索对应的class文件，如果找到则创建一个对应的Class实例，否则抛出NoClassDefFoundError异常。<br>PS:NoClassDefFoundError和ClassNotFoundException的区别<br>Java支持使用Class.forName动态加载类，如果一个类名被当做参数传人但是在类路径中没有找到则会抛出ClassNotFoundException。ClassLoader.loadClass,ClassLoader.findSystemClass在动态加载类到内存时也会抛出这个异常。<br>要查找的类在编译的时候是存在的，运行时却找不到类的定义，则会导致NoClassDefFoundError。</p>
-<p>通过自定义类加载器加载：与启动类加载器一样，先检查是否已经被标记为对应类的初始化类加载器，如果是则对应的类已经被加载，加载过程结束。否则调用loadClass把字节数组转换成ClassFile结构，然后调用defineClass创建Class实例。loadClass也可以把加载任务委托给其他类加载器。</p>
-<h3 id="Linking">Linking</h3><h4 id="Class文件校验">Class文件校验</h4>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-  </div>
+  </section>
 
   
-  <div class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
-  </div>
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
+
+
+          </div>
+          
+
+
+          
 
         </div>
-
         
-      </div>
-
-
-      
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -1311,40 +1739,48 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="WJ" />
-          <p class="site-author-name">WJ</p>
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
         </div>
-        <p class="site-description motion-element">欢迎来到WJAINNG</p>
-        <div class="site-state motion-element">
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
-        </div>
+        </nav>
 
         
 
@@ -1355,30 +1791,31 @@
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
         
-      </div>
+        
+
+      </section>
 
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+        
+      </div>
+    </main>
 
-    <div id="footer" class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
-  &copy; &nbsp; 
-  2016
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author">WJ</span>
+  <span class="author" itemprop="copyrightHolder"></span>
 </div>
 
 <div class="powered-by">
@@ -1392,69 +1829,77 @@
   </a>
 </div>
 
+        
 
+        
       </div>
-    </div>
+    </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
   
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
-
-
-  <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-    });
-  </script>
 
-  
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
   
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
   
 
   
@@ -1466,34 +1911,28 @@
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
+  
+    
   
 
 
+
+
+
   
+  
+  
+
+  
+
   
 
 </body>
