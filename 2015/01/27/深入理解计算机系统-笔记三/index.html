@@ -1,0 +1,1042 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="程序的机器级表示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解计算机系统-笔记三">
+<meta property="og:url" content="http://www.wjainng.com/2015/01/27/深入理解计算机系统-笔记三/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="程序的机器级表示">
+<meta property="og:image" content="http://www.wjainng.com/images/寄存器.jpg">
+<meta property="og:image" content="http://www.wjainng.com/images/堆栈.jpg">
+<meta property="og:updated_time" content="2015-07-04T09:30:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解计算机系统-笔记三">
+<meta name="twitter:description" content="程序的机器级表示">
+<meta name="twitter:image" content="http://www.wjainng.com/images/寄存器.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 深入理解计算机系统-笔记三 | WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?wjainng";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WJAINNG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入理解计算机系统-笔记三
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-01-27T00:00:00+08:00" content="2015-01-27">
+              2015-01-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/27/深入理解计算机系统-笔记三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/27/深入理解计算机系统-笔记三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul id="tree" class="ztree"></ul>
+
+<h1 id="程序的机器级表示">程序的机器级表示</h1><p>计算机执行机器代码.GCC C语言编译器以<strong>汇编代码</strong>的形式产生输出,汇编代码是机器代码的文本表示,给出程序中的每一条指令.然后GCC调用汇编器和链接器,从而根据汇编代码生成可执行的机器代码.</p>
+<h2 id="程序编码">程序编码</h2><p>假设一个C程序,有两个文件p1.c和p2.c,在一台IA32机器上,用Unix命令行编译这些代码如下:</p>
+<blockquote>
+<p>gcc -O1 -o p p1.c p2.c</p>
+</blockquote>
+<p>命令gcc知道是GCC C编译器,编译选项-O1高速编译器使用第一级优化.通常提高优化级别会使最终程序运行得更快,但是编译时间可能会变长,用调试工具对代码进行调试会更难.</p>
+<h3 id="机器级代码">机器级代码</h3><p>对机器级编程来说下面两种抽象尤为重要:</p>
+<ol>
+<li>机器级程序的格式和行为,定义为指令集体系结构(Instruction set architecture, ISA),定义了处理器状态,指令的格式,以及每条指令对状态的影响.</li>
+<li>机器级程序使用的存储地址是虚拟地址,提供的存储器模型看上去是一个非常大的字节数组.</li>
+</ol>
+<p>IA32机器代码和原始的C代码差别非常大,一些对C程序员隐藏的处理器状态是可见的:</p>
+<ul>
+<li>程序计数器(PC,用%eip表示)表示将要执行的下一条指令在存储器中的地址.</li>
+<li>整数寄存器文件包含8个命名的位置,分别存储32位的值.这些寄存器可以存储地址(C语言的指针)或整数数据.有的用来记录某些重要的程序状态,其他的寄存器用来保存临时数据,例如局部变量和函数的返回值.</li>
+<li>条件码寄存器保存着最近执行的算术或逻辑指令的状态信息.用来实现控制或数据流中的条件变化.</li>
+<li>一组浮点寄存器存放浮点数据.</li>
+</ul>
+<p>虽然C语言提供了一种模型,可以在存储器中声明和分配各种数据类型的对象,但是机器代码只是简单地将存储器看成一个很大的,按字节寻址的数组.</p>
+<p>程序存储器(Program memory)包含:程序的可执行机器代码,操作系统需要的一些信息,用来管理过程调用和返回的运行时栈,以及用户分配的存储器块.<em>操作系统负责管理虚拟地址空间,将虚拟地址翻译成实际处理器存储器中的物理地址</em>.</p>
+<h3 id="代码示例">代码示例</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> accum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = x + y;</span><br><span class="line">    accum += t;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查看目标代码的内容,最有价值的是反编译器.<br>linux中可以使用下面的命令</p>
+<blockquote>
+<p>linux 中使用 objdump -d code.o<br>mac 中使用 otool -tv code.o</p>
+</blockquote>
+<h2 id="数据格式">数据格式</h2><p>由于是从16位体系结构扩展成32位的,Intel用术语”字(word)”表示16位数据类型.因此32位为”双字(double words)”,称64位为”四字(quad words)”.</p>
+<table>
+<thead>
+<tr>
+<th>C声明</th>
+<th>Intel数据类型</th>
+<th>汇编代码后缀</th>
+<th>大小(字节)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>字节</td>
+<td>b</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>字</td>
+<td>w</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>双字</td>
+<td>l</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long int</td>
+<td>双字</td>
+<td>l</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long long int</td>
+<td>-</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>char *</td>
+<td>双字</td>
+<td>l</td>
+<td>4</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度</td>
+<td>s</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度</td>
+<td>l</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展精度</td>
+<td>t</td>
+<td>10/12</td>
+</tr>
+</tbody>
+</table>
+<p><em>C语言数据类型在IA32中的大小,IA32中不支持64位整数运算,编译带有long long数据的代码,需要产生一些操作序列,以32位为单位执行运算</em></p>
+<p>数据传送指令有三个变种:movb(传送字节),movw(传送字)和movl(传送双字).l用来表示双字(将32位数看成是长字 long word).汇编代码也使用l来表示4字节整数和8字节双精度浮点数,因为浮点数使用不同的指令和寄存器.</p>
+<h2 id="访问信息">访问信息</h2><p>一个IA32中央处理单元(CPU)包含一组8个存储32位值的寄存器.用来存储整数数据和指针.它们的名字都是以%e开头,它们都另有特殊的名字.在最初的8086中,寄存器是16位的,每个都有特殊的用途,名字用来反映这些不同的用途.在平坦寻址中对特殊寄存器的需求已经极大降低.<em>大多数情况下</em>,前6个寄存器都可以看成通用寄存器,使用时没有限制(有些指令以固定的寄存器作为源寄存器和/或目标寄存器).另外前3个寄存器(%eax,%ecx,%edx)的保存和恢复惯例不同于(%ebx,%edi,%esi).最后两个寄存器(%ebp,%esp)保存着指向程序栈中重要位置的指针,只有根据栈管理的标准惯例才能修改这两个存储器的值.</p>
+<p><img src="/images/寄存器.jpg" alt="alter 寄存器"></p>
+<h3 id="操作数指示符">操作数指示符</h3><p>大多数指令有一个或多个操作数,指示一个操作中要引用的源数据值,以及放置结果的目标位置.</p>
+<ol>
+<li>立即数(immediate),常数值.ATT格式中用$后面跟一个整数.</li>
+<li>寄存器(register),表示某个寄存器的内容,对双字来说可以是8个32位寄存器中的一个,对字来说课可以是8个16位寄存器中的一个,对字节来说可以是8个单字节存储器元素中的一个.用$$E_a$$表示任意寄存器a,用引用$$R[E_a]$$表示它的值.把寄存器集合看出一个数组R.</li>
+<li>存储器引用(memory),根据计算出来的地址访问某个存储器位置(有效地址).将存储器看成一个很大的字节数组用$$M_b[Addr]$$表示对存储在存储器中从地址Addr开始的b个字节值的引用.通常省去下方的b.</li>
+</ol>
+<p>有多种不同的寻址模式,允许不同形式的存储器引用.其中$$Imm(E_b,E_i,s)$$是最常用的形式.有四个组成部分:</p>
+<ul>
+<li>一个立即数偏移Imm</li>
+<li>一个基址寄存器$$E_b$$</li>
+<li>一个变址寄存器$$E_i$$</li>
+<li>一个比例因子s.s必须为1,2,4,8.</li>
+</ul>
+<p>有效地址=$$Imm + R[E_b] + R[E_i] \cdot s$$.当引用数组元素时,会用到这种通用形式.</p>
+<p>类型|格式|操作数值|名称<br>立即数|$Imm|Imm|立即数寻址<br>寄存器|$$E_a$$|$$R[E_a]$$|寄存器寻址<br>存储器|Imm|M[Imm]|绝对寻址<br>存储器|($$E_a$$)|$$M[R[E_a]]$$|间接寻址<br>存储器|$$Imm(E_b)$$|$$Imm + M[[R[E_b]]$$|(基址+偏移量)寻址<br>存储器|$$(E_b,E_i)$$|$$M[R[E_b] + R[E_i]]$$|变址寻址<br>存储器|$$(E_b,E_i,s)$$|$$M[R[E_b] + R[E_i] \cdot s]$$|比例变址寻址</p>
+<h3 id="数据传送指令">数据传送指令</h3><p>将数据从一个位置复制到另一个位置的指令是最频繁使用的指令.许多不同的指令属于不同的指令类,一类中的指令执行一样的操作,只是操作数大小不同.例如MOV类指令类由movb,movw,movl组成,分别表示大小为1,2,4个字节的数据上进行操作.</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>效果</th>
+<th>属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MOV   S,   D</strong></td>
+<td>D &lt;- S</td>
+<td>传送</td>
+</tr>
+<tr>
+<td>movb</td>
+<td>传送字节</td>
+</tr>
+<tr>
+<td>movw</td>
+<td>传送字</td>
+</tr>
+<tr>
+<td>movl</td>
+<td>传送双字</td>
+</tr>
+<tr>
+<td><strong>MOVS  S,   D</strong></td>
+<td>D &lt;- 符号扩展(S)</td>
+<td>传送符号扩展的字节</td>
+</tr>
+<tr>
+<td>movsbw</td>
+<td>将做了符号扩展的字节传送到字</td>
+</tr>
+<tr>
+<td>movsbl</td>
+<td>将做了符号扩展的字节传送到双字</td>
+</tr>
+<tr>
+<td>movswl</td>
+<td>将做了符号扩展的字传送到双字</td>
+</tr>
+<tr>
+<td><strong>MOVZ  S,   D</strong></td>
+<td>D &lt;- 零扩展(S)</td>
+<td>传送零扩展的字节</td>
+</tr>
+<tr>
+<td>movzbw</td>
+<td>将做了零扩展的字节传送到字</td>
+</tr>
+<tr>
+<td>movzbl</td>
+<td>将做了零扩展的字节传送到双字</td>
+</tr>
+<tr>
+<td>movzwl</td>
+<td>将做了零扩展的字传送到双字</td>
+</tr>
+<tr>
+<td>pushl S</td>
+<td>R[%esp] &lt;- R[%esp] - 4;</td>
+<td>将双字压栈</td>
+</tr>
+<tr>
+<td></td>
+<td>M[R[%esp]] &lt;- S</td>
+<td></td>
+</tr>
+<tr>
+<td>popl  D</td>
+<td>D &lt;- M[R[%esp]];</td>
+<td>将双字出栈</td>
+</tr>
+<tr>
+<td></td>
+<td>R[%esp] &lt;- R[%esp] + 4</td>
+</tr>
+</tbody>
+</table>
+<p>(栈向下增长,因此栈顶元素的地址是所有栈中元素地址中最低的.)<br>IA32对传送指令的两个操作数不能都指向存储器位置.</p>
+<p><em>当需要扩展时,由源操作数决定是符号扩展还是零扩展,当源操作数是有符号的进行符号扩展,否则进行零扩展</em></p>
+<p><img src="/images/堆栈.jpg" alt="alter 堆栈处理情况"></p>
+<p>将一个双字值压入栈中,先将栈指针减4,然后将值写到新的栈定地址.</p>
+<p>pushl %ebp的行为等价于下面的两条指令:</p>
+<blockquote>
+<p>sub $4, %esp      <em>减少栈指针</em><br>movl %ebp, (%esp) <em>把%ebp内容压栈</em></p>
+</blockquote>
+<p>pushl指令编码为1个字节,而上面两条指令需要6个字节.</p>
+<p>弹出一个双字的操作包括从栈顶位置读出数据,然后把栈指针加4.</p>
+<p>popl %eax 等价于下面的两条指令:</p>
+<blockquote>
+<p>movb (%esp), %eax<br>add $4,%esp</p>
+</blockquote>
+<h3 id="数据传送示例">数据传送示例</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span> *xp, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = *xp;</span><br><span class="line">    *xp = y;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">;xp at %ebp+8, y at %ebp+12</span><br><span class="line">movl 8(%ebp), %edx </span><br><span class="line">movl (%edx%), %eax</span><br><span class="line">movl 12(%ebp), %ecx</span><br><span class="line">movl %ecx,(%edx)</span><br></pre></td></tr></table></figure>
+<h2 id="算术和逻辑操作">算术和逻辑操作</h2><h3 id="加载有效地址">加载有效地址</h3><p>加载有效地址(load effective address)指令leal实际上是movl指令的变形.指令形式是从存储器读数据到寄存器,但实际上没有引用存储器,而是将有效地址写入到目的操作数中.<br>例如:如果%edx的值为x,则leal 7(%edx,%edx,4) %eax将设置寄存器%eax的值为7+5x.目的操作数必须是一个寄存器.</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>效果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>leal S,D</td>
+<td>D &lt;- &amp;S</td>
+<td>加载有效地址</td>
+</tr>
+<tr>
+<td>INC D<br>DEC D<br>NEG D<br>NOT D</td>
+<td>D &lt;- D + 1<br>D &lt;- D - 1<br>D &lt;- -D<br>D &lt;- ~D</td>
+<td>加1<br>减1<br>取负<br>取补</td>
+</tr>
+<tr>
+<td>ADD S,D<br>SUB S,D<br>IMUL S,D<br>XOR S,D<br>OR S,D<br>AND S,D<br></td>
+<td>D &lt;- D + S<br>D &lt;- D - S<br>D &lt;- D * S<br>D &lt;- D ^ S<br>D &lt;- D \</td>
+<td>S<br>D &lt;- D &amp; S<br></td>
+<td>加<br>减<br>乘<br>异或<br>或<br>与<br></td>
+</tr>
+<tr>
+<td>SAL k,D<br>SHL k,D<br>SAR k,D<br>SHR k,D</td>
+<td>D &lt;- D &lt;&lt; k<br>D &lt;- D &lt;&lt; k<br>D &lt;- D &gt;&gt; k<br>D &lt;- D &gt;&gt; k</td>
+<td>左移<br>左移(与SAL一样)<br>算术右移<br>逻辑右移</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一元操作和二元操作">一元操作和二元操作</h3><p>一元操作只有一个操作数,即是源又是目的,操作数可以是一个寄存器也可以是一个存储器位置.例如:incl (%esp),会使栈顶的4个字节元素加1.</p>
+<p>二元操作,第二个操作数即是源又是目的.第一个操作数可以是立即数,寄存器或存储器位置,第二个操作数可以是寄存器或存储器位置,但是和movl指令一样,两个操作数不能同时是存储器位置.</p>
+<h3 id="移位操作">移位操作</h3><p>移位量可以是一个立即数,或者存放在单字节寄存器元素%cl中.(这些指令很特别,只允许以这个特定的寄存器作为操作数.)</p>
+<h3 id="特殊的算术操作">特殊的算术操作</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>效果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imull S</td>
+<td>R[%edx]:R[%eax] &lt;- S * R[%eax]</td>
+<td>有符号全64位乘法</td>
+</tr>
+<tr>
+<td>mull S</td>
+<td>R[%edx]:R[%eax] &lt;- S * R[%eax]</td>
+<td>无符号全64位乘法</td>
+</tr>
+<tr>
+<td>cltd</td>
+<td>R[%edx]:R[%eax] &lt;- SignExtend(R[%eax])</td>
+<td>转为四字</td>
+</tr>
+<tr>
+<td>idivl S</td>
+<td>R[%edx] &lt;- R[%edx]:R[%eax] mod S;<br>R[%eax] &lt;- R[%edx]:R[%eax] / S</td>
+<td>有符号除法</td>
+</tr>
+<tr>
+<td>divl S</td>
+<td>R[%edx] &lt;- R[%edx]:R[%eax] mod S;<br>R[%eax] &lt;- R[%edx]:R[%eax] / S</td>
+<td>无符号除法</td>
+</tr>
+</tbody>
+</table>
+<h2 id="控制">控制</h2><p>通常C语言中的语句和机器代码中的指令都是按照它们在程序中出现的次序,顺序执行的,用jump指令可以改变一组机器代码指令的执行顺序.</p>
+<h3 id="条件码">条件码</h3><p>除了整数寄存器,CPU还维护着一组单个位的条件码(condition code)寄存器,描述了最近的算术或逻辑操作的属性.通过检测这些寄存器来执行条件分支指令.常用的条件码有:</p>
+<ul>
+<li>CF:进位标志.最近的操作使最高位产生了进位.可以用来检查无符号操作数的溢出.</li>
+<li>ZF:零标志.最近的操作得出的结果为0.</li>
+<li>SF:符号标志.最近的操作得到的结果为负数.</li>
+<li>OF:溢出标志.最近的操作导致一个补码溢出(正溢出或负溢出).</li>
+</ul>
+<p>假设通过一条ADD指令完成等价于C表达式t=a+b的功能,a,b和t都是整型.根据下面的C表达式来设置条件码:</p>
+<ul>
+<li>CF: (unsigned)t &lt; (unsigned) a 无符号溢出</li>
+<li>ZF: (t == 0) 零</li>
+<li>SF: (t &lt; 0) 负数</li>
+<li>OF: (a &lt;0 == b &lt; 0) &amp;&amp; (t &lt; 0 != a &lt; 0) 有符号溢出</li>
+</ul>
+<p>leal指令不改变任何条件码,因为它是用来进行地址计算的.<br>逻辑操作:进位标志和溢出标志会设置为0<br>移位操作:进位标志设置为最后一个被移出的位,溢出标志设置为0.<br>INC,DEC指令会设置溢出和零标志,但是不会改变进位标志.</p>
+<p>CMP指令根据它们的两个操作数之差来设置条件码,除了只设置条件码而不更新目标寄存器之外,CMP指令与SUB指令的行为是一样的.ATT格式中,列出操作数的顺序是相反的.</p>
+<p>TEST指令的行为与AND指令一样,除了它们只设置条件码而不改变目的寄存器的值.</p>
+<p>指令|基于|描述<br>CMP $$S_2,S_1$$|$$S_1- S_2$$|比较<br>cmpb<br>cmpw<br>cmpl|Compare byte<br>Compare word<br>Compare double word|<br>TEST $$S_2,S_1$$|$$S_1 \&amp; S_2$$|测试<br>testb<br>testw<br>testl|Test byte<br>Test word<br>Test double word|</p>
+<p><em>比较和测试指令,不会修改任何寄存器的值,只设置条件码</em></p>
+<h3 id="访问条件码">访问条件码</h3><p>条件码常用方法有三种:</p>
+<ol>
+<li>根据条件码的组合将一个字节设置为0或者1.</li>
+<li>可以条件跳转到程序的某个其它部分.</li>
+<li>可以有条件的传送数据.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>同义名</th>
+<th>效果</th>
+<th>设置条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sete D</td>
+<td>setz</td>
+<td>D &lt;- ZF</td>
+<td>相等/零</td>
+</tr>
+<tr>
+<td>setne D</td>
+<td>setnz</td>
+<td>D &lt;- ~ZF</td>
+<td>不等/非零</td>
+</tr>
+<tr>
+<td>sets D</td>
+<td></td>
+<td>D &lt;- SF</td>
+<td>负数</td>
+</tr>
+<tr>
+<td>setns D</td>
+<td></td>
+<td>D &lt;- ~SF</td>
+<td>非负数</td>
+</tr>
+<tr>
+<td>setg D</td>
+<td>setnle</td>
+<td>D &lt;- ~(SF ^ OF) &amp; ~ZF</td>
+<td>大于(有符号&gt;)</td>
+</tr>
+<tr>
+<td>setge D</td>
+<td>setnl</td>
+<td>D &lt;- ~(SF ^ OF)</td>
+<td>大于等于(有符号&gt;=)</td>
+</tr>
+<tr>
+<td>setl D</td>
+<td>setnge</td>
+<td>D &lt;- SF ^ OF</td>
+<td>小于(有符号&lt;)</td>
+</tr>
+<tr>
+<td>setle D</td>
+<td>setng</td>
+<td>D &lt;- SF ^ OF</td>
+<td>ZF</td>
+<td>小于等于(有符号&lt;=)</td>
+</tr>
+<tr>
+<td>seta D</td>
+<td>setnbe</td>
+<td>D &lt;- ~CF &amp; ~ZF</td>
+<td>超过(无符号&gt;)</td>
+</tr>
+<tr>
+<td>setae D</td>
+<td>setnb</td>
+<td>D &lt;- ~CF</td>
+<td>超过或相等(无符号&gt;=)</td>
+</tr>
+<tr>
+<td>setb D</td>
+<td>setnae</td>
+<td>D &lt;- CF</td>
+<td>低于(无符号&lt;)</td>
+</tr>
+<tr>
+<td>setbe D</td>
+<td>setna</td>
+<td>D &lt;- CF</td>
+<td>ZF</td>
+<td>低于或相等(无符号&lt;=)</td>
+</tr>
+</tbody>
+</table>
+<p>一条SET指令的目的操作数是8个单子节寄存器元素之一,或是存储一个字节的存储器位置,将这个字节设置成0或者1.为了得到一个32位结果,必须对高24位清零.以下是一个计算C语言表达式a&lt;b的典型指令序列,a和b都是int类型.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">;a is in %edx, b is in %eax</span><br><span class="line">cmpl %eax, %edx</span><br><span class="line">setl %al</span><br><span class="line">movzbl %al, %eax</span><br></pre></td></tr></table></figure>
+<p>虽然所有的算术操作都会设置条件码,但是各个set命令的描述都实用的情况是:执行比较指令,根据计算t=a-b设置条件码.假设$$a,b,t$$分别是a,b,t的补码形式表示的整数,因此$$t=a - \frac{t}{w} b$$,w取决于a和b的大小.</p>
+<p>sete的情况:$$当a=b时,t=0$$,因此零标志位就表示相等.<br>setl:测一个有符号比较,如果没有发生溢出(OF=0),当$$a - \frac{t}{w} &lt; 0时 a &lt; b$$,将SF设置为1指明这一点,当$$a - \frac{t}{w} \ge 0 时 a \ge b$$由SF设置为0指明.如果发生溢出有$$a - \frac{t}{w} b &gt; 0(负溢出)时 a &lt; b$$,而$$a - \frac{t}{w} b &lt; 0(正溢出)时 a &gt; b$$,当$$a=b$$时不会有溢出.因此当OF设置为1时,当且仅当SF被设置为),有a &lt; b.因此得出a&lt;b由OF XOR SF决定.</p>
+<p>对于无符号比较的测试,当a - b &lt; 0时CMP指令会设置进位标志.因此通过进位标志和零标志的组合即可判断.</p>
+<p>机器代码如何区分有符号和无符号值是很重要的,机器代码不会将每个程序值都和一个数据类型联系起来,相反,大多数情况下,机器代码对于有符号和无符号两种情况都使用一样的指令,因为无符号和补码运算具有一样的位级运算.</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag">#OS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/17/深入理解计算机系统-笔记二/" rel="next" title="深入理解计算机系统-笔记二">
+                <i class="fa fa-chevron-left"></i> 深入理解计算机系统-笔记二
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/08/JVMS-加载、链接与初始化/" rel="prev" title="加载、链接和初始化">
+                加载、链接和初始化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/01/27/深入理解计算机系统-笔记三/"
+           data-title="深入理解计算机系统-笔记三" data-url="http://www.wjainng.com/2015/01/27/深入理解计算机系统-笔记三/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#程序的机器级表示"><span class="nav-number">1.</span> <span class="nav-text">程序的机器级表示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序编码"><span class="nav-number">1.1.</span> <span class="nav-text">程序编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器级代码"><span class="nav-number">1.1.1.</span> <span class="nav-text">机器级代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例"><span class="nav-number">1.1.2.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据格式"><span class="nav-number">1.2.</span> <span class="nav-text">数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问信息"><span class="nav-number">1.3.</span> <span class="nav-text">访问信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数指示符"><span class="nav-number">1.3.1.</span> <span class="nav-text">操作数指示符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传送指令"><span class="nav-number">1.3.2.</span> <span class="nav-text">数据传送指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传送示例"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据传送示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算术和逻辑操作"><span class="nav-number">1.4.</span> <span class="nav-text">算术和逻辑操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载有效地址"><span class="nav-number">1.4.1.</span> <span class="nav-text">加载有效地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一元操作和二元操作"><span class="nav-number">1.4.2.</span> <span class="nav-text">一元操作和二元操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移位操作"><span class="nav-number">1.4.3.</span> <span class="nav-text">移位操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊的算术操作"><span class="nav-number">1.4.4.</span> <span class="nav-text">特殊的算术操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制"><span class="nav-number">1.5.</span> <span class="nav-text">控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条件码"><span class="nav-number">1.5.1.</span> <span class="nav-text">条件码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问条件码"><span class="nav-number">1.5.2.</span> <span class="nav-text">访问条件码</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wjainng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

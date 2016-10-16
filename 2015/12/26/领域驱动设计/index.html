@@ -1,0 +1,846 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="让领域模型发挥作用前提：
+大多数软件项目中，主要焦点应该是领域与领域逻辑。
+复杂的领域设计应该基于模型。
+
+开发实践：
+迭代开发。
+开发人员与领域专家具有密切的关系。
+
+模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）
+模型在领域驱动设计中的作用
+模型和设计的核心互相影响。模型与实现之间的紧密联系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="领域驱动设计">
+<meta property="og:url" content="http://www.wjainng.com/2015/12/26/领域驱动设计/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="让领域模型发挥作用前提：
+大多数软件项目中，主要焦点应该是领域与领域逻辑。
+复杂的领域设计应该基于模型。
+
+开发实践：
+迭代开发。
+开发人员与领域专家具有密切的关系。
+
+模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）
+模型在领域驱动设计中的作用
+模型和设计的核心互相影响。模型与实现之间的紧密联系">
+<meta property="og:updated_time" content="2016-01-10T14:45:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="领域驱动设计">
+<meta name="twitter:description" content="让领域模型发挥作用前提：
+大多数软件项目中，主要焦点应该是领域与领域逻辑。
+复杂的领域设计应该基于模型。
+
+开发实践：
+迭代开发。
+开发人员与领域专家具有密切的关系。
+
+模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）
+模型在领域驱动设计中的作用
+模型和设计的核心互相影响。模型与实现之间的紧密联系">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 领域驱动设计 | WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?wjainng";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WJAINNG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                领域驱动设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-26T18:11:08+08:00" content="2015-12-26">
+              2015-12-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DDD/" itemprop="url" rel="index">
+                    <span itemprop="name">DDD</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/26/领域驱动设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/领域驱动设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="让领域模型发挥作用">让领域模型发挥作用</h2><h3 id="前提：">前提：</h3><ol>
+<li>大多数软件项目中，主要焦点应该是领域与领域逻辑。</li>
+<li>复杂的领域设计应该基于模型。</li>
+</ol>
+<h3 id="开发实践：">开发实践：</h3><ol>
+<li>迭代开发。</li>
+<li>开发人员与领域专家具有密切的关系。</li>
+</ol>
+<p>模型是一种知识形式，对知识进行有选择的简化和有目的的结构化，适当的模型可以使人理解信息的意义，并专注于问题相关的信息。（是一个解决信息超载问题的工具）</p>
+<h3 id="模型在领域驱动设计中的作用">模型在领域驱动设计中的作用</h3><ol>
+<li><p>模型和设计的核心互相影响。<br><em>模型与实现之间的紧密联系才使得模型变得有用，并确保在模型中进行的分析能够转换为最终产品，可以基于对模型的理解来解释代码</em></p>
+</li>
+<li><p>模型是团队所有成员所使用的交流语言的中枢。<br><em>模型与实现之间是紧密结合的，可以将模型作为一种沟通语言与领域专家进行沟通</em></p>
+</li>
+<li><p>模型是浓缩的知识。<br><em>模型是团队一致认同的领域知识组织方式和最重要元素的区分方式，模型体现了思考方式，共同语言使得开发人员与领域专家在将信息组织为模型时更有效的协作</em></p>
+</li>
+</ol>
+<h3 id="软件的核心">软件的核心</h3><p><strong>软件的核心是其为用户解决领域相关问题的能力</strong>，其他特性，不管多么重要，都要服务于这个基本目的。</p>
+<h2 id="消化知识">消化知识</h2><p>可以通过<strong>对象交互的场景</strong>，进行模型验证，每当有新的功能需求时就在原来的模型上进行验证，如果不能满足则修改原有模型对象，并理解这些模型中新增的知识，在精化模型的过程中，代码也一步步演进。</p>
+<h3 id="有效建模的要素">有效建模的要素</h3><ol>
+<li><p>模型与实现的绑定。<br><em>最初的原型虽然简单，但是建立了实现之间的链接，在后续的迭代中一直维护该原型</em></p>
+</li>
+<li><p>获得了一种基于模型的语言。<br><em>通过不断的根据模型进行沟通，研发人员与领域专家慢慢地能够直接使用模型中的术语，并将他们组织为符合模型结构的语句</em></p>
+</li>
+<li><p>开发一个蕴含丰富知识的模型。<br><em>对象具有行为和强制性规则，模型包含各种类型的知识</em></p>
+</li>
+<li><p>提炼模型。<br><em>在模型完善的过程中，重要的概念不断被添加到模型中，同时不再使用或不重要的概念则从模型中删除，当一个不需要的概念与一个需要的概念有关联时，可以把需要的概念提取到一个新模型中，不需要的概念则可以删除</em></p>
+</li>
+<li><p>头脑风暴和实验。<br><em>通过走场景，进行模型的验证，通过头脑风暴的创造力和实验对模型进行提炼，把团队的知识转化为有价值的模型</em></p>
+</li>
+</ol>
+<h3 id="知识消化">知识消化</h3><p>信息的资料来源于领域专家头脑中的知识，来自现有系统的用户，也来自技术团队以前在相关遗留系统或同领域的其他项目中积累的经验。</p>
+<p>传统的瀑布方式，知识的流动是单向的，分析员得不到程序员与前期系统上线的反馈。只有领域专家，分析员与程序员将自己的知识输入到模型中，模型的组织才更严密，抽象也更加整洁，为实现提供更大的支持。因为领域专家也参与其中，确保模型是对业务原理的真正抽象。</p>
+<h3 id="持续学习">持续学习</h3><p>高效率的团队需要有意识地积累知识，并持续学习。对开发人员来说既要完善技术知识，也要增强领域建模技巧。（学习从事工作的特定领域知识）</p>
+<h3 id="知识丰富的设计">知识丰富的设计</h3><p>领域模型和相应的设计可用来保护和共享知识。更加明确的设计具有以下优点：</p>
+<ol>
+<li>为了实现更明确的设计，程序员与其他相关人员都能理解领域的知识。明白是一个业务规则而不是一个计算问题。</li>
+<li>程序员可以向业务专家展示技术工件，甚至代码，但必须是领域专家可以理解的，以便形成反馈。</li>
+</ol>
+<h3 id="深层模型">深层模型</h3><p>随着对领域和应用程序需求的理解逐步加深，往往会丢弃最初看起来很重要的表面元素，一开始不可能发现的巧妙抽象就会渐渐浮出水面。</p>
+<h2 id="语言的交流和使用">语言的交流和使用</h2><p>领域模型是软件项目的公共语言的核心，模型是人们头脑中形成的与项目有关的概念集合。提供了模型语言的语义，且十分精确，以便支持开发。将模型与开发活动结合在一起，使模型与代码紧密绑定。</p>
+<p>翻译使得沟通不畅，并导致知识消化变得困难。</p>
+<p>通用语言的词汇表包括类名称和主要操作，团队一致应用于领域模型的模式名称来使这种语言更为丰富。</p>
+<p>一个团队，一种语言。</p>
+<p>领域专家能够更深入地思考他们所从事的领域，如果经验丰富的领域专家都不能理解模型，则模型一定是有问题的。</p>
+<p>开发人员通过和领域专家一步一步地使用模型对象来走查场景，从而对模型进行非正式的测试。通过这个过程，可以互相加深理解，并对概念进行精化。</p>
+<h2 id="绑定模型和实现">绑定模型和实现</h2><h3 id="模式">模式</h3><p>严格按照基础模型来编写代码，能够使代码更好地表达设计含义，并且使模型更符合设计。</p>
+<p>模型驱动设计不再将分析模型与程序设计分离，而是寻求一种能够满足这两方面需求的单一模型。</p>
+<p>从模型中获取用于程序设计和基本任务分配的术语，程序代码就是模型的表达，修改代码就是改变模型，而模型的改变势必会影响到接下来相应的项目活动。</p>
+<h2 id="模型驱动设计的构造块">模型驱动设计的构造块</h2><h3 id="分离领域">分离领域</h3><p>在软件中，专门用于解决领域问题的那部分通常只占整个软件系统的很小一部分，与其重要性不成比例。需要将领域对象与系统中的其他功能分离，避免将领域概念和其他只与软件技术相关的概念相混淆，也不会把领域与整个软件系统混为一谈。</p>
+<h4 id="模式:分层架构">模式:分层架构</h4><p>如果领域有关的代码分散在大量的其他代码中，则查看和分析领域代码就会变得相当困难。（用户界面的修改有可能改变业务逻辑，调整业务也可能要修改界面）</p>
+<p>要想创建能够处理复杂任务的程序，需要把不同的关注点分开考虑，</p>
+<p>给复杂的应用程序划分层次。在每一层内分别进行设计，使其具有内聚性并且只依赖于它的下层。采用标准的架构模式，只与上层进行松散连接。将与领域模型相关的代码放在一个层中，领域对象应该将重点放在如何表达领域模型上，而不要考虑显示和存储等问题。</p>
+<h4 id="模型属于领域层">模型属于领域层</h4><p>领域层是领域模型以及所有与其直接相关的设计元素的表现。由业务逻辑的设计和实现组成。如果领域逻辑与程序中的其他关注点混在一起，就不能实现这种一致性，将领域实现独立出来是领域驱动设计的前提。</p>
+<h4 id="模式:智能用户界面">模式:智能用户界面</h4><p>在用户界面中实现所有的业务逻辑。（领域驱动设计只有在大型项目中才能产生最大的收益，并且项目团队能掌握那些技巧）</p>
+<p>SMART UI模式的优点：</p>
+<ul>
+<li>效率高，短时间内实现<em>简单</em>的应用程序。</li>
+<li>对开发人员的要求较低。</li>
+<li>可以克服分析上的不足，把原型发布给用户，根据用户反馈快速修改产品即可。</li>
+<li>程序之间彼此独立，可以相对准确地安排小模块交付的日期。扩展简单功能也很容易。</li>
+<li>很顺利地使用关系数据库。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>不通过数据库很难集成应用模块。</li>
+<li>没有对行为的重用，也没对业务问题的抽象。</li>
+<li>复杂的功能很快会让你无所适从。</li>
+</ul>
+<h3 id="软件中所表示的模型">软件中所表示的模型</h3><h4 id="关联">关联</h4><p>对象之间的关联使得建模与实现之间的交互更为复杂。</p>
+<p>有三种方式可以使得关联更易于控制。</p>
+<ol>
+<li>规定一个遍历方向。</li>
+<li>添加限定符，以便有效地减少多重关联。</li>
+<li>消除不必要的关联。</li>
+</ol>
+<p>简化和约束模型的关联是通往MODEL-DRIVEN-DESIGN的必经之路。仔细区分对象可以使得模型更加清晰，并得到更实用的实现。</p>
+<h4 id="模式:ENTITY(REFERENCE_OBJECT)">模式:ENTITY(REFERENCE OBJECT)</h4><p>很多对象不是通过他们的属性定义的，而是通过一连串的连续事件和标识定义的。</p>
+<p>主要由标识定义的对象成为ENTITY（实体），有特殊的建模和设计思路。它们具有生命周期，这期间它们的形式和内容可能发生根本改变，但是其标识保持不变。</p>
+<p>只要满足两个条件就可以为ENTITY。</p>
+<ol>
+<li>在整个生命周期中具有连续性。</li>
+<li>对用户来说非常重要的不同状态不是由属性决定的。</li>
+</ol>
+<h5 id="ENTITY建模">ENTITY建模</h5><p>ENTITY的最基本职责是确保联系性，以便使其行为更清楚且可预测。不需要将注意力集中在属性或行为上，而应该抓住ENTITY对象定义的最基本特征，尤其是那些用于识别，查找或匹配对象的特征。</p>
+<h5 id="设计标识操作">设计标识操作</h5><p>每个ENTITY都必须有一种建立标识的操作方式，以便与其他对象区分开，即使这些对象与它具有相同的描述属性。（类似数据库中的key）不管系统如何定义，都必须确保标识属性在系统中是唯一的。</p>
+<h4 id="模式：VALUE_OBJECT">模式：VALUE OBJECT</h4><p>用于描述领域的某个方面而本身没有标识的对象称为VALUE OBJECT（值对象）。VALUE OBJECT被实例化之后用来表示一些设计元素，只关心这些元素是什么，而不关心它们是谁。</p>
+<p>当我们只关心一个模型元素的属性时，应该把它归类为VALUE OBJECT。应该使这个模型元素能够表示出其属性的意义，并为它提供相关功能。VALUE OBJECT应该是不可变的，不要给它分配任何标识，也不要把它设计成ENTITY那么复杂。</p>
+<h5 id="设计VALUE_OBJECT">设计VALUE OBJECT</h5><p>我们并不关心使用的是VALUE OBJECT的哪个实例。在设计VALUE OBJECT时有多种选择，包括复制，共享或保持VALUE OBJECT不变。为了安全地共享一个对象，必须确保共享对象是不变的，否则会影响所有对其有引用的对象的属性。(可以通过传递不变对象或者对象的一个副本进行解决)。</p>
+<p>复制和共享哪个更划算取决于实现环境，复制可能导致系统被大量的对象阻塞，但共享可能会减慢分布式系统的速度。<br>下面的情况最好使用共享，可以发挥共享的最大价值并最大限度地减少麻烦：</p>
+<ul>
+<li>当节省数据库空间或者减少对象数量是一个关键要求时。（内存有限的情况下）</li>
+<li>当通信开销很低时。（例如在中央服务器中）</li>
+<li>当共享的对象被严格限定为不可变时。</li>
+</ul>
+<h5 id="设计包含VALUE_OBJECT的关联">设计包含VALUE OBJECT的关联</h5><p>模型中的关联越少越好，越简单越好。应该完全清除VALUE OBJECT之间的双向关联，如果模型中确实需要这种关联，应该重新考虑下将对象声明为VALUE OBJECT这个决定是否正确。</p>
+<h4 id="模式：SERVICE">模式：SERVICE</h4><p>在某些情况下，最实用的设计会包含一些特殊的操作，这些操作从概念上讲不属于任何对象，会在模型中引入一种新的元素，这就是SERVICE（服务）。</p>
+<p>SERVICE是作为接口提供的一种操作，它在模型中是独立的，不像ENTITY和VALUE OBJECT那样具有封装的状态。它强调的是与其他对象的关系与ENTITY与VALUE OBJECT不同，只是定义了能够为客户做什么。SERVICE是以一个活动命名，而不是以一个ENTITY命名，是一个动词而非名词。其参数与结果应该是领域对象。</p>
+<p>好的SERVICE有以下3个特征：</p>
+<ol>
+<li>与领域概念相关的操作不是ENTITY或VALUE OBJECT的一个自然部分。</li>
+<li>接口是根据领域模型的其他元素定义的。</li>
+<li>操作是无状态的。（指任何客户都可以使用某个SERVICE的任何实例，不必关系该实例的历史状态）</li>
+</ol>
+<p>当领域中的某个重要的过程或者转换操作不属于实体或者值对象的自然职责时，应该在模型中添加一个作为独立接口的操作，并将其声明为SERVICE。定义接口时要使用模型语言，此外应该将SERVICE定义为无状态的。</p>
+<h5 id="SERVICE与孤立的领域层">SERVICE与孤立的领域层</h5><p>SERVICE并不止在领域层中使用，需要区分属于领域层的SERVICE和那些属于其他层的SERVICE，并划分责任，以便将它们明确地区分开。</p>
+<p>文献中对SERVICE的讨论大多是单纯从技术角度讨论，属于基础设施层。领域层和应用层的SERVICE与这些基础设施层SERVICE进行协作。例如封装了电子邮件系统的接口，就是基础设施层中的一个SERVICE。</p>
+<p>应用层SERVICE和领域层SERVICE可能很难区分。应用层负责安排一个通知，而领域层负责确定是否满足临界值，将SERVICE划分到各个曾中：</p>
+<ul>
+<li>应用层：资金转账应用服务<ul>
+<li>获取输入</li>
+<li>发送消息给领域层服务，要求其执行</li>
+<li>监听确认消息</li>
+<li>决定使用基础设施SERVICE来发送通知</li>
+</ul>
+</li>
+<li>领域层：资金转账领域服务<ul>
+<li>与必要的账户和总账对象进行交互，执行相应的借入和贷出操作</li>
+<li>提供结果的确认（允许转账或拒绝转账等）</li>
+</ul>
+</li>
+<li>基础设施层：发送通知服务<ul>
+<li>按照应用程序的指示发送电子邮件，信件和其他信息</li>
+</ul>
+</li>
+</ul>
+<h4 id="模式：MODULE（PACKAGE)">模式：MODULE（PACKAGE)</h4><p>MODULE为人们提供两种观察模型的方式，一是可以在MODULE中查看细节，而不会被整个模型淹没，二是观察MODULE之间的关系，而不考虑其内部细节。领域层中的MODULE是模型中有意义的部分，从更大的角度描述了领域。</p>
+<p>MODULE之间应该是低耦合的，而在MODULE的内部则是高内聚的。MODULE不仅仅是代码的划分，而且也是概念的划分，一个人一次考虑的事情是有限的（因此才需要低耦合），不连贯的思想和一锅粥似的思维同样难于理解（因此才需要高内聚）。</p>
+<p>如果模型讲述了一个故事，那么MODULE就是整个故事中的各个章节。模块的名称表达了其意义。</p>
+<h5 id="敏捷的MODULE">敏捷的MODULE</h5><p>MODULE需要与模型的其他部分一同演变。更改MODULE可能需要大范围地更新代码，因此MODULE结构和名称往往反映了模型的较早形式，而类则不是这样的。</p>
+<h5 id="基础设施驱动的打包存在隐患">基础设施驱动的打包存在隐患</h5><p>除非真正有必要将代码分布到不同的服务器上，否则就把实现单一概念对象的所有代码放在同一个模块中（如果不能放在同一个对象中的话）实现业务逻辑的对象与负责数据库访问的对象之间的联系非常广泛，因此他们之间的耦合度很高。</p>
+<h3 id="建模范式">建模范式</h3><p>主流的范式是面向对象设计</p>
+<h4 id="在混合范式中坚持使用MODEL-DRIVEN_DESIGN">在混合范式中坚持使用MODEL-DRIVEN DESIGN</h4><p>在面向对象的应用中，有时会混合使用一些其他技术，例如规则引擎。当将非对象元素混合到以面向对象为主的系统中时，需要遵循以下4条经验规则</p>
+<ol>
+<li>不要和实现规范对抗。</li>
+<li>把通用语言作为依靠的基础。</li>
+<li>不要一味依赖UML。</li>
+<li>保持怀疑态度。</li>
+</ol>
+<h2 id="领域对象的生命周期">领域对象的生命周期</h2><p>使用FACTORY（工厂）来创建和重建复杂对象，并使用AGGREGATE来封装它们的内部结构。最后在生命周期的中间和末尾使用REPOSITORy（存储库）来提供查找和检索持久对象并封装庞大基础设施的手段。</p>
+<h3 id="模式：AGGREGATE">模式：AGGREGATE</h3><p>将关联减至最少的设计有助于简化对象之间的遍历，并在某种程度上限制关系的急剧增多。但大多数业务领域中的对象都具有十分复杂的联系，以至于最终形成一个很长很深的对象引用路径，在某种程度上，这种混乱状态反映了现实世界，因为现实世界中就很少有清晰的边界。</p>
+<p>AGGREGATE划分出一个范围，在这个范围内，生命周期的每个阶段都必须满足一些固定规则。</p>
+<h3 id="模式：FACTORY">模式：FACTORY</h3><p>当创建一个对象或创建整个AGGREGATE时，如果创建工作很复杂，或者暴露了过多的内部结构，可以使用FACTORY进行封装。</p>
+<p>对象的创建本身可以是一个主要操作，但被创建的对象并不适合承担复杂的装配操作。将这些职责混合在一起可能导致出现难以理解的设计。复杂的对象创建是领域层的职责，然而这项任务并不属于那些用于表示模型的对象。FACTORY应该封装创建一个复杂对象或AGGREGATE所属的知识，它提供一个反映客户目标的接口，以及一个被创建对象的抽象视图。</p>
+<p>应该将创建复杂对象的实例和聚合的职责转移给一个单独的对象，这个对象本身在领域模型中可能没有职责，但它仍是领域设计的一部分。提供一个封装所有复杂装配操作的接口，并且不需要客户引用要被实例化的对象的具体类 。在创建AGGREGATE时要把它作为一个整体，并确保它满足固定规则。</p>
+<p>FACTOFY有很多中设计方法：FACTORY METHOD（工厂方法），ABSTRACT FACTORY（抽象工厂）和BUILDER（构建器）。任何好的工厂都需要满足以下两个基本需求。</p>
+<ol>
+<li>每个创建方法都是原子方法，而且满足被创建对象或AGGREGSTE的所有固定规则。</li>
+<li>FACTORY应该被抽象为所需的类型，而不是创建出具体的类。</li>
+</ol>
+<h4 id="选择FACTORY及其应用位置">选择FACTORY及其应用位置</h4><p>FACTORY的作用是使创建出的对象将细节隐藏起来，因此我们把FACTORY用在那些需要隐藏细节的地方。通常与AGGREGATE有关。</p>
+<p>当有些细节需要隐藏（无论要隐藏的是具体实现还是构造的复杂性）而又找不到一个自然的地方来隐藏它们时，必须创建一个专用的FACTORY对象或SERVICE。整个AGGREGATE通常由一个独立的FACTORY来创建，FACTORy负责把对根的引用传递出去，并确保创建出的AGGREGATE满足固定规则。</p>
+<h4 id="有些时候只需要使用构造函数">有些时候只需要使用构造函数</h4><p>在以下情况下最好使用简单的，公共的构造函数：</p>
+<ul>
+<li>类是一种类型。不是任何相关层次结构的一部分，而且没有通过接口实现多态。</li>
+<li>客户关心的是实现，可能是将其作为选择STRATEGY的一种方式。</li>
+<li>客户可以访问对象的所有属性。</li>
+<li>构造并不复杂。</li>
+<li>公共构造函数必须遵守与FACTORY相同的规则：必须是一个原子操作，并且满足被创建对象的所有固定规则。</li>
+</ul>
+<h4 id="接口的设计">接口的设计</h4><p>当设计FACTORY的方法签名时需要注意下面的两点：</p>
+<ol>
+<li>每个操作都必须是原子的。</li>
+<li>FACTORY将与其参数发生耦合。</li>
+</ol>
+<p>使用抽象类型的参数，而不是它们的具体类，降低耦合。</p>
+<h4 id="固定规则的逻辑应放置在哪里">固定规则的逻辑应放置在哪里</h4><p>FACTORY负责确保它所创建的对象或AGGREGATE满足所有固定规则，然而在把应用于一个对象的规则移到该对象外部之前应该三思，FACTORY可以将固定规则检查工作委派给产品，这通常是最佳选择。</p>
+<h4 id="ENTITY_FACTORY与VALUE_OBJECT_FACTORY">ENTITY FACTORY与VALUE OBJECT FACTORY</h4><p>VALUE OBJECT 是不可变的，所以完成产品就是最终形式，因此FACTORY必须提供产品的完整描述。而ENTITY FACTORY则只需具有构造有效AGGREGATE所需的那些属性。</p>
+<h4 id="重建已存储的对象">重建已存储的对象</h4><p>重建对象的factory与创建对象的factory很类似，主要有以下两个不同点：</p>
+<ol>
+<li>用于重建对象的factory不分配新的id，如果重新分配id将与先前的对象id发生冲突。因此id必须是输入参数的一部分。</li>
+<li>当规定规则未被满足时，重建对象的factory采用不同的处理方式。如果创建新对象时未满足可以简单地拒绝创建对象，但是如果为重建，则需要有更灵活的处理，需要通过一些策略来修复这种不一致的情况（例如对象存在数据库中）。</li>
+</ol>
+<h3 id="模式：REPOSITORY">模式：REPOSITORY</h3><ul>
+<li>为客户提供一个简单的模型，可用来获取持久对象并管理它们的生命周期。</li>
+<li>使应用程序和领域设计与持久化技术解耦。</li>
+<li>体现了有关对象访问的设计决策。</li>
+<li>很容易替换为哑实现，在测试中使用。</li>
+</ul>
+<h4 id="REPOSITORY的查询">REPOSITORY的查询</h4><p>可以构建硬编码式的查询，因为即使它们不做这些事，一些客户也必须要做。在一些需要执行大量查询的项目上，可以构建一个支持更灵活的查询的REPOSITORY框架，例如基于SPECIFICATION的查询特别适合作为一个框架来使用。</p>
+<h4 id="客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略">客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略</h4><p>持久化技术的封装可以使得客户变得十分简单，并且使客户与REPOSITORY的实现之间完全解耦，但像一般的封装一样，开发人员必须知道在封装背后的内涵。在使用REPOSITORY时，不同的使用方式或工作方式可能会对性能产生极大的影响。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/20/Agile-Java/" rel="next" title="Agile Java">
+                <i class="fa fa-chevron-left"></i> Agile Java
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/01/读书清单/" rel="prev" title="读书清单">
+                读书清单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/26/领域驱动设计/"
+           data-title="领域驱动设计" data-url="http://www.wjainng.com/2015/12/26/领域驱动设计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#让领域模型发挥作用"><span class="nav-number">1.</span> <span class="nav-text">让领域模型发挥作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提："><span class="nav-number">1.1.</span> <span class="nav-text">前提：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发实践："><span class="nav-number">1.2.</span> <span class="nav-text">开发实践：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型在领域驱动设计中的作用"><span class="nav-number">1.3.</span> <span class="nav-text">模型在领域驱动设计中的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件的核心"><span class="nav-number">1.4.</span> <span class="nav-text">软件的核心</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消化知识"><span class="nav-number">2.</span> <span class="nav-text">消化知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有效建模的要素"><span class="nav-number">2.1.</span> <span class="nav-text">有效建模的要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识消化"><span class="nav-number">2.2.</span> <span class="nav-text">知识消化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持续学习"><span class="nav-number">2.3.</span> <span class="nav-text">持续学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识丰富的设计"><span class="nav-number">2.4.</span> <span class="nav-text">知识丰富的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深层模型"><span class="nav-number">2.5.</span> <span class="nav-text">深层模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言的交流和使用"><span class="nav-number">3.</span> <span class="nav-text">语言的交流和使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定模型和实现"><span class="nav-number">4.</span> <span class="nav-text">绑定模型和实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式"><span class="nav-number">4.1.</span> <span class="nav-text">模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型驱动设计的构造块"><span class="nav-number">5.</span> <span class="nav-text">模型驱动设计的构造块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分离领域"><span class="nav-number">5.1.</span> <span class="nav-text">分离领域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式:分层架构"><span class="nav-number">5.1.1.</span> <span class="nav-text">模式:分层架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型属于领域层"><span class="nav-number">5.1.2.</span> <span class="nav-text">模型属于领域层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式:智能用户界面"><span class="nav-number">5.1.3.</span> <span class="nav-text">模式:智能用户界面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件中所表示的模型"><span class="nav-number">5.2.</span> <span class="nav-text">软件中所表示的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关联"><span class="nav-number">5.2.1.</span> <span class="nav-text">关联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式:ENTITY(REFERENCE_OBJECT)"><span class="nav-number">5.2.2.</span> <span class="nav-text">模式:ENTITY(REFERENCE OBJECT)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ENTITY建模"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">ENTITY建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计标识操作"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">设计标识操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：VALUE_OBJECT"><span class="nav-number">5.2.3.</span> <span class="nav-text">模式：VALUE OBJECT</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计VALUE_OBJECT"><span class="nav-number">5.2.3.1.</span> <span class="nav-text">设计VALUE OBJECT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计包含VALUE_OBJECT的关联"><span class="nav-number">5.2.3.2.</span> <span class="nav-text">设计包含VALUE OBJECT的关联</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：SERVICE"><span class="nav-number">5.2.4.</span> <span class="nav-text">模式：SERVICE</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SERVICE与孤立的领域层"><span class="nav-number">5.2.4.1.</span> <span class="nav-text">SERVICE与孤立的领域层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：MODULE（PACKAGE)"><span class="nav-number">5.2.5.</span> <span class="nav-text">模式：MODULE（PACKAGE)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#敏捷的MODULE"><span class="nav-number">5.2.5.1.</span> <span class="nav-text">敏捷的MODULE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基础设施驱动的打包存在隐患"><span class="nav-number">5.2.5.2.</span> <span class="nav-text">基础设施驱动的打包存在隐患</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模范式"><span class="nav-number">5.3.</span> <span class="nav-text">建模范式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在混合范式中坚持使用MODEL-DRIVEN_DESIGN"><span class="nav-number">5.3.1.</span> <span class="nav-text">在混合范式中坚持使用MODEL-DRIVEN DESIGN</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#领域对象的生命周期"><span class="nav-number">6.</span> <span class="nav-text">领域对象的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式：AGGREGATE"><span class="nav-number">6.1.</span> <span class="nav-text">模式：AGGREGATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式：FACTORY"><span class="nav-number">6.2.</span> <span class="nav-text">模式：FACTORY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择FACTORY及其应用位置"><span class="nav-number">6.2.1.</span> <span class="nav-text">选择FACTORY及其应用位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有些时候只需要使用构造函数"><span class="nav-number">6.2.2.</span> <span class="nav-text">有些时候只需要使用构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口的设计"><span class="nav-number">6.2.3.</span> <span class="nav-text">接口的设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#固定规则的逻辑应放置在哪里"><span class="nav-number">6.2.4.</span> <span class="nav-text">固定规则的逻辑应放置在哪里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ENTITY_FACTORY与VALUE_OBJECT_FACTORY"><span class="nav-number">6.2.5.</span> <span class="nav-text">ENTITY FACTORY与VALUE OBJECT FACTORY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重建已存储的对象"><span class="nav-number">6.2.6.</span> <span class="nav-text">重建已存储的对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式：REPOSITORY"><span class="nav-number">6.3.</span> <span class="nav-text">模式：REPOSITORY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REPOSITORY的查询"><span class="nav-number">6.3.1.</span> <span class="nav-text">REPOSITORY的查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略"><span class="nav-number">6.3.2.</span> <span class="nav-text">客户代码可以忽略REPOSITORY的实现，但开发人员不能忽略</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wjainng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

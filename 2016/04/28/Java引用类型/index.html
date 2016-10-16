@@ -1,0 +1,677 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Java 引用类型种类说明，以及各类型对GC的影响.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java引用类型">
+<meta property="og:url" content="http://www.wjainng.com/2016/04/28/Java引用类型/index.html">
+<meta property="og:site_name" content="WJAINNG">
+<meta property="og:description" content="Java 引用类型种类说明，以及各类型对GC的影响.">
+<meta property="og:updated_time" content="2016-05-02T10:35:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java引用类型">
+<meta name="twitter:description" content="Java 引用类型种类说明，以及各类型对GC的影响.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Java引用类型 | WJAINNG </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?wjainng";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WJAINNG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学而不思则罔，思而不学则殆</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '9iYEJdgSYspte2Fuse3c','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java引用类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-28T23:11:12+08:00" content="2016-04-28">
+              2016-04-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/28/Java引用类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/Java引用类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java引用类型">Java引用类型</h1><p>Java2平台引入了java.lang.ref包，对引用的概念进行了扩充，之前对象只有引用或者没有被引用状态，不能解决一些场景，例如如果内存空间够时保存在内存中，当内存空间在垃圾回收后还紧张时可以清理这些对象。</p>
+<p><strong>引用实例存在以下四种状态：</strong></p>
+<p><strong>Active:</strong>该状态时java虚拟机会特别对待，当初始化时为该状态，当GC发现引用对象的可达性改变成适当状态时，其状态根据是否有queue转变成Pending或者Inactive状态。<br><em>queue=ReferenceQueue or ReferenceQueue.NULL(如果没有指定),且next=null</em></p>
+<p><strong>Pending:</strong>pending-reference中的一个元素，等待被reference-handler线程处理，如果引用实例没有指定queue则不会出现该状态。<br><em>queue=ReferenceQueue 且next=this</em></p>
+<p><strong>Enqueued:</strong>为引用被创建时注入的queue中的一个元素，当引用从其queue中移除时，状态变成Inactive。如果引用实例没有指定quee则不会出现该状态。<br><em>queue=ReferenceQueue.ENQUEUED且next=this或者queue中的下一个元素</em></p>
+<p><strong>Inactive:</strong>当引用的状态变成Inactive时，其状态不再改变.<br><em>queue=ReferenceQueue.NULL且next=this</em></p>
+<p>引用对象（reference object）提供get方法获取其引用的对象（referent），垃圾回收器可以在任何时候回收referent。一旦referent被回收则reference object的get方法返回null，因此在使用reference object时需要注意：</p>
+<ol>
+<li>必须检查referent是否为空。因为垃圾回收器可以在任何时候回收referent。</li>
+<li>当使用referent时必须用一个强引用指向referent，否则referent可能随时会被垃圾回收掉，导致NullPointerException。</li>
+<li>必须有一个到reference object的强引用，否则reference object会被垃圾回收。</li>
+</ol>
+<p><strong>引用类型按强到弱有下面四种：</strong></p>
+<ol>
+<li><a href="#strongReference">Strong Reference.</a></li>
+<li><a href="#softReference">Soft Reference.</a></li>
+<li><a href="#weakReference">Weak Reference.</a></li>
+<li><a href="#phantomReference">Phantom Reference.</a></li>
+</ol>
+<h2 id="Strong_Reference"><span id="strongReference">Strong Reference</span></h2><p>强引用类型是java的默认引用实现，它会尽可能长时间的存活于JVM中，当没有任何对象指向它时GC执行后将会被回收.</p>
+<h2 id="Soft_Reference"><span id="softReference">Soft Reference</span></h2><p>软引用用来实现内存比较敏感的缓存，垃圾回收器会尽量保证对象不会被回收，但是会在抛出OutOfMemoryError之前回收对象。</p>
+<blockquote>
+<p>jvm参数如下：<br>-Xms20m -Xmx20m -verbose:gc -Xmn10m -XX:SurvivorRatio=3 -XX:+PrintGCDetails</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Set&lt;SoftReference&lt;Memory&gt;&gt; refs = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        ReferenceQueue&lt;Memory&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">            SoftReference&lt;Memory&gt; ref = <span class="keyword">new</span> SoftReference&lt;Memory&gt;(</span><br><span class="line">                <span class="keyword">new</span> Memory(<span class="number">2</span>), queue);</span><br><span class="line">            System.out.println(i + <span class="string">":create "</span> + ref);</span><br><span class="line">            refs.add(ref);</span><br><span class="line">            Reference re = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">while</span> ((re = queue.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">"cleared:"</span> + re);</span><br><span class="line">                refs.remove(re);</span><br><span class="line">                re.clear();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Memory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MB_SIZE = <span class="number">1024</span> * <span class="number">1024</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] bytes;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Memory</span><span class="params">(<span class="keyword">int</span> mb)</span> </span>&#123;</span><br><span class="line">        bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[MB_SIZE * mb];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p class="sysout"><br>输出结果类似：<br>0:create java.lang.ref.SoftReference@66d3c617<br>1:create java.lang.ref.SoftReference@63947c6b<br>[GC (Allocation Failure) [PSYoungGen: 5605K-&gt;656K(8192K)] 5605K-&gt;4760K(18432K), 0.0033536 secs] [Times: user=0.01 sys=0.00, real=0.00 secs]<br>2:create java.lang.ref.SoftReference@2b193f2d<br>3:create java.lang.ref.SoftReference@355da254<br>[GC (Allocation Failure) [PSYoungGen: 4931K-&gt;624K(8192K)] 9035K-&gt;8824K(18432K), 0.0032101 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]<br>[Full GC (Ergonomics) [PSYoungGen: 624K-&gt;0K(8192K)] [ParOldGen: 8200K-&gt;8723K(10240K)] 8824K-&gt;8723K(18432K), [Metaspace: 3072K-&gt;3072K(1056768K)], 0.0077874 secs] [Times: user=0.01 sys=0.01, real=0.01 secs]<br>4:create java.lang.ref.SoftReference@4dc63996<br>5:create java.lang.ref.SoftReference@d716361<br>[Full GC (Ergonomics) [PSYoungGen: 4315K-&gt;4097K(8192K)] [ParOldGen: 8723K-&gt;8723K(10240K)] 13038K-&gt;12820K(18432K), [Metaspace: 3085K-&gt;3085K(1056768K)], 0.0060487 secs] [Times: user=0.01 sys=0.00, real=0.01 secs]<br><font color="red">[Full GC (Allocation Failure) [PSYoungGen: 4097K-&gt;0K(8192K)] [ParOldGen: 8723K-&gt;504K(10240K)] 12820K-&gt;504K(18432K), [Metaspace: 3085K-&gt;3085K(1056768K)], 0.0053351 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] </font><br>6:create java.lang.ref.SoftReference@6ff3c5b5<br>cleared:java.lang.ref.SoftReference@63947c6b<br>cleared:java.lang.ref.SoftReference@355da254<br>cleared:java.lang.ref.SoftReference@2b193f2d<br>cleared:java.lang.ref.SoftReference@66d3c617<br>cleared:java.lang.ref.SoftReference@d716361<br>cleared:java.lang.ref.SoftReference@4dc63996<br>7:create java.lang.ref.SoftReference@3764951d<br>Heap<br> PSYoungGen      total 8192K, used 4280K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)<br>  eden space 6144K, 69% used [0x00000007bf600000,0x00000007bfa2e380,0x00000007bfc00000)<br>  from space 2048K, 0% used [0x00000007bfe00000,0x00000007bfe00000,0x00000007c0000000)<br>  to   space 2048K, 0% used [0x00000007bfc00000,0x00000007bfc00000,0x00000007bfe00000)<br> ParOldGen       total 10240K, used 504K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)<br>  object space 10240K, 4% used [0x00000007bec00000,0x00000007bec7e3e0,0x00000007bf600000)<br> Metaspace       used 3100K, capacity 4496K, committed 4864K, reserved 1056768K<br>  class space    used 342K, capacity 388K, committed 512K, reserved 1048576K<br></p>
+
+<blockquote>
+<p>从上面的输出直到最后一次回收后，使用内存才减少，因此可以看出soft reference会尽可能阻止垃圾回收。</p>
+</blockquote>
+<h2 id="Weak_Reference"><span id="weakReference">Weak Reference</span></h2><p>弱引用不会阻止其引用的对象变成finalizable，finalized，reclaimed。经常用来实现标准映射，例如map中的key。垃圾回收器可以在任何时候回收只有弱引用引用的对象，一般会在一次major collection时回收，<em>可能</em>经历几次minor collection。(在jdk1.8中测试，在mimor gc时就被回收了)</p>
+<blockquote>
+<p>jvm参数如下：<br>-Xms20m -Xmx20m -verbose:gc -Xmn10m   -XX:SurvivorRatio=3 -XX:+PrintGCDetails -XX:+PrintGCDateStamps</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Set&lt;WeakReference&lt;Memory&gt;&gt; refs = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        ReferenceQueue&lt;Memory&gt; queue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            WeakReference&lt;Memory&gt; ref = <span class="keyword">new</span> WeakReference&lt;Memory&gt;(</span><br><span class="line">              <span class="keyword">new</span> Memory(<span class="number">2</span>), queue);</span><br><span class="line">            System.out.println(i + <span class="string">":create "</span> + ref);</span><br><span class="line">            refs.add(ref);</span><br><span class="line">            Reference re = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">while</span> ((re = queue.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">"cleared:"</span> + re);</span><br><span class="line">                refs.remove(re);</span><br><span class="line">                re.clear();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Memory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MB_SIZE = <span class="number">1024</span> * <span class="number">1024</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] bytes;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Memory</span><span class="params">(<span class="keyword">int</span> mb)</span> </span>&#123;</span><br><span class="line">        bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[MB_SIZE * mb];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p class="sysout"><br>输出结果类似：<br>0:create java.lang.ref.WeakReference@66d3c617<br>1:create java.lang.ref.WeakReference@63947c6b<br>[GC (Allocation Failure) [PSYoungGen: 5605K-&gt;656K(8192K)] 5605K-&gt;664K(18432K), 0.0010058 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]<br>2:create java.lang.ref.WeakReference@2b193f2d<br>cleared:java.lang.ref.WeakReference@66d3c617<br>cleared:java.lang.ref.WeakReference@63947c6b<br>3:create java.lang.ref.WeakReference@355da254<br>[GC (Allocation Failure) [PSYoungGen: 4930K-&gt;608K(8192K)] 4938K-&gt;616K(18432K), 0.0008789 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]<br>4:create java.lang.ref.WeakReference@4dc63996<br>cleared:java.lang.ref.WeakReference@2b193f2d<br>cleared:java.lang.ref.WeakReference@355da254<br>5:create java.lang.ref.WeakReference@d716361<br>Heap<br> PSYoungGen      total 8192K, used 4985K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)<br>  eden space 6144K, 71% used [0x00000007bf600000,0x00000007bfa46440,0x00000007bfc00000)<br>  from space 2048K, 29% used [0x00000007bfe00000,0x00000007bfe98000,0x00000007c0000000)<br>  to   space 2048K, 0% used [0x00000007bfc00000,0x00000007bfc00000,0x00000007bfe00000)<br> ParOldGen       total 10240K, used 8K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)<br>  object space 10240K, 0% used [0x00000007bec00000,0x00000007bec02000,0x00000007bf600000)<br> Metaspace       used 3054K, capacity 4496K, committed 4864K, reserved 1056768K<br>  class space    used 338K, capacity 388K, committed 512K, reserved 1048576K<br><br></p>
+
+<blockquote>
+<p>从上面的输出可以看出，当内存不够时weak reference对应的对象都被回收了。 </p>
+</blockquote>
+<h2 id="Phantom_Reference"><span id="phantomReference">Phantom Reference</span></h2><p>当对象只被虚引用时，其finalizer方法如果有的话已经被执行，没有方法获取其引用的对象。<br>虚引用不是用来获取referent而是用来表示referent已经被回收了，可以用来进行资源的清除。虚引用使得程序知道什么时候对象不再被使用。</p>
+<h3 id="Finalizer">Finalizer</h3><p>当用finalizer进行资源的释放时会存在下面的问题：</p>
+<ol>
+<li><p>finalizer可能永远也不会被调用。<br>如果程序不缺少内存，GC可能永远不会发生，另外如果其他finalize方法有问题，一直占有线程也会导致其他finalize方法没有机会运行。</p>
+</li>
+<li><p>对象可能在finalizer后复活。<br>因为finalize方法最多只会执行一次，当对象在finalize方法复活后不会再次释放资源。(通过在finalize方法把自身赋值到一个静态变量即可复活)</p>
+</li>
+</ol>
+<blockquote>
+<p>另外：标准的JVM用一个线程处理所有对象的finalize方法，如果某些对象的finalize方法执行很长，会导致内存释放的时间延长，即使jvm在抛出OutOfMemoryError之前会执行GC，但是如果对象具有finalize方法，并且finalize方法未被执行之前不会被回收，仍然等待其finalize方法执行。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FinalizeMemory</span> <span class="keyword">extends</span> <span class="title">Memory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sleepSeconds = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FinalizeMemory</span><span class="params">(<span class="keyword">int</span> mb)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(mb, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FinalizeMemory</span><span class="params">(<span class="keyword">int</span> mb, <span class="keyword">int</span> sleepSeconds)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(mb);</span><br><span class="line">        <span class="keyword">this</span>.sleepSeconds = sleepSeconds;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(sleepSeconds);</span><br><span class="line">            System.out.println(<span class="keyword">this</span> + <span class="string">": finalize called"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">super</span>.finalize();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        testFinalize();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testFinalize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> FinalizeMemory(<span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="comment">//new Memory(3);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果指定-Xmx20m，上面的程序在运行时会抛出OutOfMemoryError异常，因为finalize方法未执行完毕导致内存回收不够及时。<br>同样不能保证phantom reference会被放入reference queue中，只有垃圾回收运行时，不可达对象才会被回收，对应的reference才会被放入queue中。</p>
+</blockquote>
+<h2 id="Reference_Queue">Reference Queue</h2><p>当referent对象的可达性发生变化时，其reference object会被垃圾回收器放入reference queue中，一般在phantom reference时使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Resource</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Memory memory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Resource</span><span class="params">(<span class="keyword">int</span> mb)</span> </span>&#123;</span><br><span class="line">        memory = <span class="keyword">new</span> Memory(mb);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Memory <span class="title">getMemory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> memory;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhantonMemoryRef</span> <span class="keyword">extends</span> <span class="title">PhantomReference</span>&lt;<span class="title">Resource</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Memory memory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PhantonMemoryRef</span><span class="params">(Resource resource, ReferenceQueue&lt;Resource&gt; queue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(resource, queue);</span><br><span class="line">        memory = resource.getMemory();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Memory <span class="title">getMemory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> memory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMemory</span><span class="params">(Memory memory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.memory = memory;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        testPhantonRef();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testPhantonRef</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ReferenceQueue&lt;Resource&gt; source = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;PhantonMemoryRef&gt; refs = <span class="keyword">new</span> ArrayList&lt;PhantonMemoryRef&gt;(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                    PhantonMemoryRef ref = <span class="keyword">null</span>;</span><br><span class="line">                    <span class="keyword">while</span> ((ref = (PhantonMemoryRef) source.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        ref.setMemory(<span class="keyword">null</span>);</span><br><span class="line">                        ref.clear();</span><br><span class="line">                        refs.remove(ref);</span><br><span class="line">                        System.gc();<span class="comment">//有可能会导致回收不及时抛出OutOfMemoryError。</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        t.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">        t.setPriority(Thread.MIN_PRIORITY);</span><br><span class="line">        t.start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            refs.add(<span class="keyword">new</span> PhantonMemoryRef(<span class="keyword">new</span> Resource(<span class="number">2</span>), source));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面程序在运行时，如果没有及时gc也会抛出OutOfMemoryError异常，尤其是处理queue线程的优先级比较低时，测试时通过在ref清理后，加上System.gc();后没有出现该异常。</p>
+</blockquote>
+<p>参考列表:<br><a href="http://www.kdgregory.com/index.php?page=java.refobj" target="_blank" rel="external">Java Reference Object</a><br><a href="http://blog.kdgregory.com/2014/06/finalizers.html" target="_blank" rel="external">finazlide</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/28/JVM笔记二-垃圾收集器与内存分配策略/" rel="next" title="JVM笔记二[垃圾收集器与内存分配策略]">
+                <i class="fa fa-chevron-left"></i> JVM笔记二[垃圾收集器与内存分配策略]
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/02/Java-Finalization/" rel="prev" title="Java Finalization">
+                Java Finalization <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/28/Java引用类型/"
+           data-title="Java引用类型" data-url="http://www.wjainng.com/2016/04/28/Java引用类型/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/title3.jpg"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description">学而不思则罔，思而不学则殆</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java引用类型"><span class="nav-number">1.</span> <span class="nav-text">Java引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Strong_Reference"><span class="nav-number">1.1.</span> <span class="nav-text">Strong Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Soft_Reference"><span class="nav-number">1.2.</span> <span class="nav-text">Soft Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak_Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Weak Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phantom_Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Phantom Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Finalizer"><span class="nav-number">1.4.1.</span> <span class="nav-text">Finalizer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference_Queue"><span class="nav-number">1.5.</span> <span class="nav-text">Reference Queue</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wjainng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
